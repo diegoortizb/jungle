@@ -1,0 +1,8 @@
+# Read Home:
+curl -i -X GET localhose:8080/home
+
+# add new voter
+curl -i -H "Content-Type: application/json" -X POST -d '{
+        "name": "Diego Ortiz",
+        "statement": "I vote for the best world!"
+    '} localhost:8080/vote
