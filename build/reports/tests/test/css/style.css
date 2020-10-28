@@ -1,9 +1,4 @@
-@font-face {
-    font-family: 'OfficinaSans';
-    /*src: url("../OfficinaSans-Bold.woff2");*/
-    font-weight: normal;
-    font-style: normal;
-}
+
 #summary {
     margin-top: 30px;
     margin-bottom: 40px;

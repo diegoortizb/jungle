@@ -2,7 +2,13 @@ com/java/jungle/controllers/HomeController.java
  com.java.jungle.controllers.HomeController
 com/java/jungle/JungleApplication.java
  com.java.jungle.JungleApplication
-com/java/jungle/model/random.java
- com.java.jungle.model.random
 com/java/jungle/model/voteExample.java
  com.java.jungle.model.voteExample
+com/java/jungle/model/random.java
+ com.java.jungle.model.random
+com/java/jungle/repository/PartsRepository.java
+ com.java.jungle.repository.PartsRepository
+com/java/jungle/model/Parts.java
+ com.java.jungle.model.Parts
+com/java/jungle/resource/UsersResource.java
+ com.java.jungle.resource.UsersResource
