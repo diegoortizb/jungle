@@ -1,31 +1,24 @@
 package com.java.jungle.controllers;
 
-import com.java.jungle.model.voteExample;
+import com.java.jungle.repository.PartsRepository;
+import com.java.jungle.resource.UsersResource;
+import com.java.jungle.service.PartsService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
 
-@RestController
-@RequestMapping("/home")
+@Controller
 public class HomeController {
-    private List<voteExample> voters = new ArrayList<>();
-    private AtomicLong nextId = new AtomicLong();
+
+    @Autowired
+    private PartsService partsService;
 
     @GetMapping("/home")
-    public ModelAndView index () {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("home");
-        return modelAndView;
-    }
-
-    @PostMapping("/vote")
-    public voteExample createNewVoter(@RequestBody voteExample voter) {
-        //set voter to have next ID
-        voter.setId(nextId.incrementAndGet());
-        voters.add(voter);
-        return voter;
+    public String index (Model model) {
+        model.addAttribute("parts", partsService.findAll());
+        return "home";
     }
 }
