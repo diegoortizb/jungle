@@ -1,0 +1,25 @@
+#partsTable {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+}
+
+#partsTable td, #partsTable th {
+    border: 1px solid #393737;
+    padding: 8px;
+}
+
+#partsTable .center {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+
+#partsTable tr:nth-child(even){background-color: #f2f2f2;}
+
+#partsTable tr:hover {background-color: #ddd;}
+
+#partsTable th {
+    text-align: left;
+    background-color: dimgray;
+    color: white;
+}
