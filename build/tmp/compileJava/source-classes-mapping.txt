@@ -1,12 +1,18 @@
-com/java/jungle/repository/PartsRepository.java
- com.java.jungle.repository.PartsRepository
+com/java/jungle/resource/UsersResource.java
+ com.java.jungle.resource.UsersResource
 com/java/jungle/JungleApplication.java
  com.java.jungle.JungleApplication
 com/java/jungle/model/Parts.java
  com.java.jungle.model.Parts
 com/java/jungle/service/PartsService.java
  com.java.jungle.service.PartsService
-com/java/jungle/controllers/HomeController.java
- com.java.jungle.controllers.HomeController
-com/java/jungle/resource/UsersResource.java
- com.java.jungle.resource.UsersResource
+com/java/jungle/repository/PartsRepository.java
+ com.java.jungle.repository.PartsRepository
+com/java/jungle/controllers/CustomerController.java
+ com.java.jungle.controllers.CustomerController
+com/java/jungle/controllers/AdminController.java
+ com.java.jungle.controllers.AdminController
+com/java/jungle/controllers/WorkStationController.java
+ com.java.jungle.controllers.WorkStationController
+com/java/jungle/controllers/ReceivingDeskController.java
+ com.java.jungle.controllers.ReceivingDeskController

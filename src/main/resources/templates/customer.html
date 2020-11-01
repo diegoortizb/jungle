@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<style>
+    body { background-color: whitesmoke; margin:20px }
+    h1 { color: azure }
+</style>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/topnav.css">
+    <link rel="stylesheet" href="/css/partsTable.css">
+    <title>Home</title>
+</head>
+
+    <body>
+        <div class="topnav">
+            <div class="jungleLogo">
+                <img src="/images/jungle_logo2.png" alt="jungle logo" width="86" height="40">
+            </div>
+            <a class="active" href="customer">Customer</a>
+            <a href="ws">Workstation</a>
+            <a href="rd">Recieving Desk</a>
+            <a href="admin">Admin</a>
+        </div> <br> <br>
+        <h2>Welcome customer!</h2>
+        <div id="partsTable" class="center">
+            <table>
+                <tr>
+                    <th>Picture</th>
+                    <th>Desc</th>
+                    <th>Price</th>
+                </tr>
+                <tr th:each = "part : ${parts}">
+                    <td><img th:src="${part.picture}" alt="picture"></td>
+                    <td th:utext="${part.description}">default</td>
+                    <td th:utext="${part.price}">price</td>
+                </tr>
+            </table>
+        </div>
+    </body>
+
+</html>
