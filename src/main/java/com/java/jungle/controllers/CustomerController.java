@@ -19,8 +19,8 @@ public class CustomerController {
         return "customer";
     }
 
-    @GetMapping("/{partid}")
-    public String test () {
-        return "tabs";
+    @GetMapping("/cart")
+    public String shoppingCart (Model model) {
+        return "cart";
     }
 }
