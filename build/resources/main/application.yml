@@ -7,13 +7,13 @@ spring:
       username: student
       password: student
     db-2:
-      driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://localhost:3306/mysql
-      username: root
+      driver-class-name: org.h2.Driver
+      url: jdbc:h2:file:~/embedded-db
+      username: sa
       password:
 
-#  jpa:
-#    hibernate:
-#      ddl-auto: none
+  jpa:
+    hibernate:
+      ddl-auto: update
 #    generate-ddl: false
 #    show-sql: true
