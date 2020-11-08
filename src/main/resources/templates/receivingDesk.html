@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/css/topnav.css">
@@ -29,5 +31,21 @@
         </div>
     </div>
         <h2>Welcome to the Receiving Desk!</h2>
+    <div class="row">
+        <div id="partsTable" class="col-md-6">
+            <table>
+                <tr>
+                    <th>Picture</th>
+                    <th>Desc</th>
+                    <th>Price</th>
+                </tr>
+                <tr th:each = "order : ${orders}">
+                    <td><img th:src="${order.picture}" alt="picture"></td>
+                    <td th:utext="${order.description}">default</td>
+                    <td th:utext="${order.price}">price</td>
+                </tr>
+            </table>
+        </div>
+    </div>
     </body>
 </html>

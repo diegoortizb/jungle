@@ -1,11 +1,19 @@
+
 spring:
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://blitz.cs.niu.edu:3306/csci467
-    username: student
-    password: student
-  jpa:
-    hibernate:
-      ddl-auto: none
-    generate-ddl: false
-    show-sql: true
+    db-1:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://blitz.cs.niu.edu:3306/csci467
+      username: student
+      password: student
+    db-2:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/mysql
+      username: root
+      password:
+
+#  jpa:
+#    hibernate:
+#      ddl-auto: none
+#    generate-ddl: false
+#    show-sql: true

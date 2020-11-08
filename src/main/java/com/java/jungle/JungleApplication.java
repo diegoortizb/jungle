@@ -4,7 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@EnableJpaRepositories(basePackages = "com.java.jungle.repository")
+
+//@EnableJpaRepositories(basePackages = "com.java.jungle.repository")
 @SpringBootApplication
 public class JungleApplication {
 
@@ -12,4 +13,7 @@ public class JungleApplication {
         SpringApplication.run(JungleApplication.class, args);
     }
 
+
+
 }
+

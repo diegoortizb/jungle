@@ -6,8 +6,10 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
+          <factory-entry name="db2EntityManagerFactory" />
           <factory-entry name="entityManagerFactory" />
           <factory-entry name="jungle.main" />
+          <factory-entry name="partsEntityManagerFactory" />
         </datasource-mapping>
         <naming-strategy-map />
       </configuration>
