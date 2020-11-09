@@ -49,6 +49,18 @@
                         <td th:utext="${part.price}">price</td>
                     </tr>
                 </table>
+                <table>
+                    <tr>
+                        <th>Picture</th>
+                        <th>Desc</th>
+                        <th>Price</th>
+                    </tr>
+                    <tr th:each = "item : ${cart}">
+                        <td th:utext="${item.id}" ></td>
+                        <td th:utext="${item.items}">default</td>
+                        <td th:utext="${item.price}">price</td>
+                    </tr>
+                </table>
             </div>
             <div id="shoppingCart" class="col-md-6">
                 <table>

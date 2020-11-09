@@ -2,16 +2,15 @@
 spring:
   datasource:
     db-1:
+      driver-class-name: org.h2.Driver
+      url: jdbc:h2:mem:embedded-db
+      username: sa
+      password:
+    db-2:
       driver-class-name: com.mysql.cj.jdbc.Driver
       url: jdbc:mysql://blitz.cs.niu.edu:3306/csci467
       username: student
       password: student
-    db-2:
-      driver-class-name: org.h2.Driver
-      url: jdbc:h2:file:~/embedded-db
-      username: sa
-      password:
-
   jpa:
     hibernate:
       ddl-auto: update

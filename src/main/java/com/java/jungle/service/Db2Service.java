@@ -13,6 +13,6 @@ public class Db2Service {
     @Autowired
     private db2Repository repository2;
 
-    @ModelAttribute("orders")
+    @ModelAttribute("parts")
     public List<db2Entity> findAll(){return repository2.findAll();}
 }

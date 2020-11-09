@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ReceivingDeskController {
 
     @Autowired
-    private Db2Service orders;
+    private Db2Service parts;
 
     @GetMapping
     public String home(Model model) {
-        model.addAttribute("orders", orders.findAll());
+        model.addAttribute("parts", parts.findAll());
         return "receivingDesk";
     }
 }
