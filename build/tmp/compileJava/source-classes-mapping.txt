@@ -16,3 +16,9 @@ com/java/jungle/controllers/WorkStationController.java
  com.java.jungle.controllers.WorkStationController
 com/java/jungle/controllers/CustomerController.java
  com.java.jungle.controllers.CustomerController
+com/java/jungle/repository/CartRepository.java
+ com.java.jungle.repository.CartRepository
+com/java/jungle/model/Cart.java
+ com.java.jungle.model.Cart
+com/java/jungle/service/CartService.java
+ com.java.jungle.service.CartService
