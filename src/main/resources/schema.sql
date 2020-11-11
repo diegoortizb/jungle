@@ -1,5 +1,6 @@
 CREATE TABLE cart (
-    id int(11) AUTO_INCREMENT NOT NULL,
-    items varchar(255) DEFAULT NULL,
-    price int(255) DEFAULT NULL
+    id    int          AUTO_INCREMENT NOT NULL,
+    item  varchar(255) DEFAULT NULL,
+    qty   int          DEFAULT 1,
+    price float        DEFAULT 0
 );

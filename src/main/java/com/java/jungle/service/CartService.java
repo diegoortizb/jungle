@@ -23,7 +23,7 @@ public class CartService {
         return cartRepo.findAll();
     }
 
-    public void addItemToCart(String description, int price) {
+    public void addItemToCart(String description, float price) {
         Cart item = new Cart(description,price);
         cartRepo.save(item);
     }

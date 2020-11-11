@@ -15,21 +15,27 @@ public class Cart {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "items")
-    private String items;
+    @Column(name = "item")
+    private String item;
 
     @Column(name = "price")
-    private int price;
+    private float price;
 
-    public Cart(int id, String items, int price) {
+    //quantity
+    @Column(name = "qty")
+    private int qty;
+
+    public Cart(int id, String item, float price) {
         this.id = id;
-        this.items = items;
+        this.item = item;
         this.price = price;
+        this.qty = 1;
     }
 
-    public Cart(String items, int price) {
-        this.items = items;
+    public Cart(String item, float price) {
+        this.item = item;
         this.price = price;
+        this.qty = 1;
     }
 
     public Cart() {
@@ -43,15 +49,15 @@ public class Cart {
         this.id = id;
     }
 
-    public String getItems() {
-        return items;
+    public String getItem() {
+        return item;
     }
 
-    public void setItems(String items) {
-        this.items = items;
+    public void setItems(String item) {
+        this.item = item;
     }
 
-    public int getPrice() {
+    public float getPrice() {
         return price;
     }
 

@@ -29,6 +29,9 @@ public class CustomerController {
     @Autowired
     private CartService cartService;
 
+    //
+    //  method retrieves main customer page
+    //
     @RequestMapping(value="/customer", method=RequestMethod.GET)
     public String home (Model model) {
         model.addAttribute("parts", partsService.findAll());
@@ -36,11 +39,12 @@ public class CustomerController {
         return "customer";
     }
 
+    //
+    // method enables user to add items to the cart
+    //
     @RequestMapping(value="/customer", method=RequestMethod.POST)
     public ResponseEntity addItemToCart(@RequestParam(value="description") String description,
-                                        @RequestParam(value="price") int price) {
-        //can make a workaround to find last item on the cart
-        // (highest id val) and just add one to it
+                                        @RequestParam(value="price") float price) {
 
         cartService.addItemToCart(description, price);
 
