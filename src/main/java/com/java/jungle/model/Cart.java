@@ -1,6 +1,7 @@
 package com.java.jungle.model;
 
 import com.java.jungle.model.Parts;
+import org.hibernate.annotations.GeneratorType;
 
 import javax.persistence.*;
 import java.awt.*;
@@ -10,7 +11,7 @@ import java.awt.*;
 public class Cart {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
@@ -20,8 +21,13 @@ public class Cart {
     @Column(name = "price")
     private int price;
 
-    public Cart(Integer id, String items, int price) {
+    public Cart(int id, String items, int price) {
         this.id = id;
+        this.items = items;
+        this.price = price;
+    }
+
+    public Cart(String items, int price) {
         this.items = items;
         this.price = price;
     }
