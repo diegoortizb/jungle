@@ -21,7 +21,6 @@ public class Cart {
     @Column(name = "price")
     private float price;
 
-    //quantity
     @Column(name = "qty")
     private int qty;
 
@@ -63,5 +62,13 @@ public class Cart {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public int getQty() {
+        return qty;
+    }
+
+    public void setQty(int qty) {
+        this.qty = qty;
     }
 }

@@ -38,18 +38,21 @@
             <h2>Welcome to the shopping cart!</h2>
         </div>
         <div class="container">
+            <div class>
+                <a class="btn btn-primary btn-sm btn-dark" href="javascript:history.back()" role="button">Continue Shopping</a>
+            </div>
             <div class="row justify-content-center">
                 <div class="col-auto">
                     <table id="partsTable" >
                         <tr>
-                            <th>item</th>
+                            <th>Item</th>
                             <th>Price</th>
                             <th>Quantity</th>
                         </tr>
-                        <tr th:each = "part : ${parts}">
-                            <td><img th:src="${part.picture}" alt="picture"></td>
-                            <td th:utext="${part.description}" href="/customer">default</td>
-                            <td th:utext="${part.price}">price</td>
+                        <tr th:each = "item : ${cart}">
+                            <td th:utext="${item.item}"></td>
+                            <td th:utext="${item.price}"></td>
+                            <td th:utext="${item.qty}"></td>
                         </tr>
                     </table>
                 </div>

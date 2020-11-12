@@ -35,8 +35,26 @@ public class CustomerController {
     @RequestMapping(value="/customer", method=RequestMethod.GET)
     public String home (Model model) {
         model.addAttribute("parts", partsService.findAll());
-        model.addAttribute("cart", cartService.findAll());
         return "customer";
+    }
+
+    //
+    //  method retrieves all items that was added to the shopping cart
+    //
+    @RequestMapping(value="/customer/cart", method=RequestMethod.GET)
+    public String cart (Model model) {
+        model.addAttribute("cart", cartService.findAll());
+        return "cart";
+    }
+
+    @RequestMapping(value="/customer/cart", method=RequestMethod.DELETE)
+    public ResponseEntity removeItemFromCart(@RequestParam(value="id") int id) {
+        try {
+            cartService.removeItemFromCart(id);
+        } catch (Exception e) {
+            return ResponseEntity.ok(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return ResponseEntity.ok(HttpStatus.OK);
     }
 
     //
