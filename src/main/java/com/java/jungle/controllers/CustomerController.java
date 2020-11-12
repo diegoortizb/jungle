@@ -39,6 +39,18 @@ public class CustomerController {
     }
 
     //
+    // method enables user to add items to the cart
+    //
+    @RequestMapping(value="/customer", method=RequestMethod.POST)
+    public String addItemToCart(@RequestParam(value="description") String description,
+                                @RequestParam(value="price") float price) {
+        //TODO MUST ADD A WAY TO ADD 1 TO cart.qty IF ITEM IS ALREADY IN CART
+        cartService.addItemToCart(description, price);
+
+        return "redirect:/customer";
+    }
+
+    //
     //  method retrieves all items that was added to the shopping cart
     //
     @RequestMapping(value="/customer/cart", method=RequestMethod.GET)
@@ -47,6 +59,19 @@ public class CustomerController {
         return "cart";
     }
 
+    //
+    //  method updates the shopping cart to the given quantity
+    //
+    @RequestMapping(value="/customer/cart", method=RequestMethod.POST)
+    public String updateQty(@RequestParam(value="id") int id,
+                            @RequestParam(value="qty") int qty) {
+        cartService.updateQty(id,qty);
+        return "redirect:/customer/cart";
+    }
+
+    // TODO THIS METHOD WILL DELETE ITEMS FROM THE SHOPPING CART
+    //
+    //
     @RequestMapping(value="/customer/cart", method=RequestMethod.DELETE)
     public ResponseEntity removeItemFromCart(@RequestParam(value="id") int id) {
         try {
@@ -57,15 +82,5 @@ public class CustomerController {
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    //
-    // method enables user to add items to the cart
-    //
-    @RequestMapping(value="/customer", method=RequestMethod.POST)
-    public ResponseEntity addItemToCart(@RequestParam(value="description") String description,
-                                        @RequestParam(value="price") float price) {
 
-        cartService.addItemToCart(description, price);
-
-        return ResponseEntity.ok(HttpStatus.OK);
-    }
 }

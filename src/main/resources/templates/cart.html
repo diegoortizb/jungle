@@ -48,11 +48,20 @@
                             <th>Item</th>
                             <th>Price</th>
                             <th>Quantity</th>
+                            <th>Update</th>
                         </tr>
-                        <tr th:each = "item : ${cart}">
-                            <td th:utext="${item.item}"></td>
-                            <td th:utext="${item.price}"></td>
-                            <td th:utext="${item.qty}"></td>
+                        <tr th:each = "part : ${cart}">
+                            <div th:id="${part.id}">
+                                <form name="addToCart" method="post" action ="">
+                                    <td id="partPicture" th:utext="${part.item}" ></td>
+                                    <td id="partdes" th:utext="${part.price}"></td>
+                                    <td id="partQuantity">
+                                        <input type="text" id="qty" name="qty" th:placeholder="${part.qty}">
+                                    </td>
+                                    <input type="hidden" id="id" name="id" th:value="${part.id}">
+                                    <td> <input type="submit" value="Update Order"></td>
+                                </form>
+                            </div>
                         </tr>
                     </table>
                 </div>

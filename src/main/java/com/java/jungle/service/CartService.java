@@ -24,6 +24,12 @@ public class CartService {
         return cartRepo.findAll();
     }
 
+    public void updateQty(int id, int qty) {
+        Cart item = cartRepo.findById(id).get();
+        item.setQty(qty);
+        cartRepo.save(item);
+    }
+
     public void addItemToCart(String description, float price) {
         Cart item = new Cart(description,price);
         cartRepo.save(item);
