@@ -30,5 +30,9 @@ com/java/jungle/service/CartService.java
  com.java.jungle.service.CartService
 com/java/jungle/repository/Parts/CartRepository.java
  com.java.jungle.repository.Parts.CartRepository
+com/java/jungle/repository/Parts/TaxesRepository.java
+ com.java.jungle.repository.Parts.TaxesRepository
+com/java/jungle/model/Taxes.java
+ com.java.jungle.model.Taxes
 com/java/jungle/controllers/CustomerController.java
  com.java.jungle.controllers.CustomerController
