@@ -2,6 +2,7 @@ package com.java.jungle.repository.Parts;
 
 import com.java.jungle.model.Cart;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
