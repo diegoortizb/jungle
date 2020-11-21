@@ -10,3 +10,11 @@ CREATE TABLE taxes (
     weightBracket int    NOT NULL,
     taxRate       float  NOT NULL
 );
+CREATE TABLE orders(
+    id            int    AUTO_INCREMENT,
+    item_id       int    NOT NULL,
+    qty           int    DEFAULT 1,
+    email         varchar(255) NOT NULL,
+    status        boolean DEFAULT 0,
+    PRIMARY KEY (id)
+);
