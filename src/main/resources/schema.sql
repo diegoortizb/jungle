@@ -1,3 +1,10 @@
+CREATE TABLE parts(
+    id            int    PRIMARY KEY AUTO_INCREMENT,
+    desc          VARCHAR(50)    NOT NULL,
+    price         decimal(8,2)   NOT NULL,
+    weight        decimal(4,2)   NOT NULL,
+    pictureURL    VARCHAR(50)    NOT NULL
+);
 CREATE TABLE cart (
     id     int          PRIMARY KEY AUTO_INCREMENT,
     partID int          NOT NULL,
@@ -19,9 +26,6 @@ CREATE TABLE orders (
     partID        int    NOT NULL,
     qty           int    DEFAULT 1,
     email         VARCHAR(255),
-    //if status status = 0, completed?
-    //          status = 1, processing?
-    //          status = 3, bad?
     status        int DEFAULT 1,
 
     FOREIGN KEY (partID) REFERENCES parts(id)
@@ -35,10 +39,3 @@ CREATE TABLE inventory (
     FOREIGN KEY (partID) REFERENCES parts(id)
 );
 
-CREATE TABLE parts(
-    id            int    PRIMARY KEY AUTO_INCREMENT,
-    desc          VARCHAR(50)    NOT NULL,
-    price         decimal(8,2)   NOT NULL,
-    weight        decimal(4,2)   NOT NULL,
-    pictureURL    VARCHAR(50)    NOT NULL
-);
