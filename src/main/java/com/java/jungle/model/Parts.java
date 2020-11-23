@@ -6,9 +6,9 @@ import javax.persistence.*;
 public class Parts {
     @Id
     @GeneratedValue
-    @Column(name = "number")
+    @Column(name = "id")
     private Integer number;
-    @Column(name = "description")
+    @Column(name = "desc")
     private String description;
     @Column(name = "price")
     private Float price;
@@ -17,6 +17,14 @@ public class Parts {
     @Column(name = "pictureURL")
     private String picture;
     public Parts(){}
+
+    public Parts(Integer number, String description, Float price, Float weight, String picture) {
+        this.number = number;
+        this.description = description;
+        this.price = price;
+        this.weight = weight;
+        this.picture = picture;
+    }
 
     public Integer getNumber() {
         return number;
