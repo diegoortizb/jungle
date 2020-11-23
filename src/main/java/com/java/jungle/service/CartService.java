@@ -35,6 +35,15 @@ public class CartService {
         cartRepo.save(item);
     }
 
+    public float getTotalInCart() {
+        List<Cart> Cart = cartRepo.findAll();
+        float total = 0;
+        for (Cart Item : Cart) {
+            total += Item.getPrice() * Item.getQty();
+        }
+        return total;
+    }
+
     public void removeItemFromCart(int id) {
         cartRepo.deleteById(id);
     }

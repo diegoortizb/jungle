@@ -57,6 +57,7 @@ public class CustomerController {
     @RequestMapping(value="/customer/cart", method=RequestMethod.GET)
     public String cart (Model model) {
         model.addAttribute("cart", cartService.findAll());
+        model.addAttribute("total", cartService.getTotalInCart());
         return "cart";
     }
 
