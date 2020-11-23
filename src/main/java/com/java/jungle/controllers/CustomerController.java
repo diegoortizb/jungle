@@ -24,7 +24,7 @@ public class CustomerController {
     //  Db2Service IS THE LEGACY DATABASE
     //
     @Autowired
-    private Db2Service partsService;
+    private PartsService partsService;
 
     @Autowired
     private CartService cartService;
@@ -42,10 +42,11 @@ public class CustomerController {
     // method enables user to add items to the cart
     //
     @RequestMapping(value="/customer", method=RequestMethod.POST)
-    public String addItemToCart(@RequestParam(value="description") String description,
+    public String addItemToCart(@RequestParam(value="partID") Integer partID,
+                                @RequestParam(value="description") String description,
                                 @RequestParam(value="price") float price) {
         //TODO MUST ADD A WAY TO ADD 1 TO cart.qty IF ITEM IS ALREADY IN CART
-        cartService.addItemToCart(description, price);
+        cartService.addItemToCart(partID,description, price);
 
         return "redirect:/customer";
     }
