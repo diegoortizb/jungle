@@ -15,6 +15,9 @@ public class Cart {
     @Column(name = "id")
     private Integer id;
 
+    @Column(name = "partID")
+    private Integer partID;
+
     @Column(name = "item")
     private String item;
 
@@ -24,8 +27,8 @@ public class Cart {
     @Column(name = "qty")
     private int qty;
 
-    public Cart(int id, String item, float price) {
-        this.id = id;
+    public Cart(int partID, String item, float price) {
+        this.partID = partID;
         this.item = item;
         this.price = price;
         this.qty = 1;

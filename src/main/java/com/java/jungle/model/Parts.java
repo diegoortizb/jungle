@@ -7,31 +7,31 @@ public class Parts {
     @Id
     @GeneratedValue
     @Column(name = "id")
-    private Integer number;
+    private Integer id;
     @Column(name = "desc")
-    private String description;
+    private String desc;
     @Column(name = "price")
     private Float price;
     @Column(name = "weight")
     private Float weight;
     @Column(name = "pictureURL")
-    private String picture;
+    private String pictureURL;
     public Parts(){}
 
-    public Parts(Integer number, String description, Float price, Float weight, String picture) {
-        this.number = number;
-        this.description = description;
+    public Parts(Integer id, String desc, Float price, Float weight, String pictureURL) {
+        this.id = id;
+        this.desc = desc;
         this.price = price;
         this.weight = weight;
-        this.picture = picture;
+        this.pictureURL = pictureURL;
     }
 
-    public Integer getNumber() {
-        return number;
+    public Integer getId() {
+        return id;
     }
 
     public String getDescription() {
-        return description;
+        return desc;
     }
 
     public Float getPrice() {
@@ -43,15 +43,11 @@ public class Parts {
     }
 
     public String getPicture() {
-        return picture;
-    }
-
-    public void setNumber(Integer number) {
-        this.number = number;
+        return pictureURL;
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.desc = description;
     }
 
     public void setPrice(Float price) {
@@ -63,6 +59,6 @@ public class Parts {
     }
 
     public void setPicture(String picture) {
-        this.picture = picture;
+        this.pictureURL = picture;
     }
 }
