@@ -74,6 +74,14 @@
                             <th id="totalTitle" colspan="3">Total :</th>
                             <td id="totalSum" th:utext="${total}">0</td>
                         </tr>
+                        <tr>
+                            <th id="tax" colspan="3">Tax:</th>
+                            <td id="taxRate" th:utext="${taxRate}">0</td>
+                        </tr>
+                        <tr>
+                            <th id="totalAfterTax" colspan="3">Total After Taxes :</th>
+                            <td id="totalTaxed" th:utext="${totalTax}">0</td>
+                        </tr>
                     </table>
                 </div>
             </div>

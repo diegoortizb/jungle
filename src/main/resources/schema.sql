@@ -10,7 +10,8 @@ CREATE TABLE cart (
     partID int          NOT NULL,
     item   varchar(255) DEFAULT NULL,
     qty    int          DEFAULT 1,
-    price  float        DEFAULT 0,
+    price  decimal(8,2) DEFAULT 0,
+    weight decimal(4,2) DEFAULT 0,
 
     FOREIGN KEY (partID) REFERENCES parts(id)
 );

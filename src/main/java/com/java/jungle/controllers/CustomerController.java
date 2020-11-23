@@ -44,9 +44,10 @@ public class CustomerController {
     @RequestMapping(value="/customer", method=RequestMethod.POST)
     public String addItemToCart(@RequestParam(value="partID") Integer partID,
                                 @RequestParam(value="description") String description,
-                                @RequestParam(value="price") float price) {
+                                @RequestParam(value="price") float price,
+                                @RequestParam(value="weight") float weight) {
         //TODO MUST ADD A WAY TO ADD 1 TO cart.qty IF ITEM IS ALREADY IN CART
-        cartService.addItemToCart(partID,description, price);
+        cartService.addItemToCart(partID,description, price, weight);
 
         return "redirect:/customer";
     }
@@ -58,6 +59,8 @@ public class CustomerController {
     public String cart (Model model) {
         model.addAttribute("cart", cartService.findAll());
         model.addAttribute("total", cartService.getTotalInCart());
+        model.addAttribute("taxRate", cartService.getTaxRate());
+        model.addAttribute("totalTax", cartService.getTotalAfterTaxes());
         return "cart";
     }
 

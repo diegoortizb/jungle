@@ -27,11 +27,15 @@ public class Cart {
     @Column(name = "qty")
     private int qty;
 
-    public Cart(int partID, String item, float price) {
+    @Column(name = "weight")
+    private float weight;
+
+    public Cart(int partID, String item, float price, float weight) {
         this.partID = partID;
         this.item = item;
         this.price = price;
         this.qty = 1;
+        this.weight = weight;
     }
 
     public Cart(String item, float price) {
@@ -73,5 +77,13 @@ public class Cart {
 
     public void setQty(int qty) {
         this.qty = qty;
+    }
+
+    public float getWeight() {
+        return weight;
+    }
+
+    public void setWeight(float weight) {
+        this.weight = weight;
     }
 }

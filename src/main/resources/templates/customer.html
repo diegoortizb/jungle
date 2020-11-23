@@ -54,6 +54,7 @@
                             <th>Picture</th>
                             <th>Item</th>
                             <th>Price</th>
+                            <th>Weight</th>
                             <th>Cart</th>
                         </tr>
                         <tr th:each = "part : ${parts}">
@@ -61,10 +62,12 @@
                                     <td id="partPicture"><img th:src="${part.picture}" alt="picture" ></td>
                                     <td id="partdes" th:utext="${part.description}"></td>
                                     <td id="partPrice" th:utext="${part.price}">price</td>
+                                    <td id="partWeight" th:utext="${part.weight}">weight</td>
                                 <form name="addToCart" method="post" action ="">
                                     <input type="hidden" id="partID" name="partID" th:value="${part.id}">
                                     <input type="hidden" id="description" name="description" th:value="${part.description}">
                                     <input type="hidden" id="price" name="price" th:value="${part.price}">
+                                    <input type="hidden" id="weight" name="weight" th:value="${part.weight}">
                                     <td> <input type="submit" value="Add to cart"></td>
                                 </form>
                             </div>

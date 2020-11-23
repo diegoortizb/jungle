@@ -1,7 +1,11 @@
 package com.java.jungle.service;
 
 import com.java.jungle.model.Cart;
+import com.java.jungle.model.Parts;
+import com.java.jungle.model.Taxes;
 import com.java.jungle.repository.Parts.CartRepository;
+import com.java.jungle.repository.Parts.PartsRepository;
+import com.java.jungle.repository.Parts.TaxesRepository;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
@@ -19,6 +23,12 @@ public class CartService {
     @Autowired
     CartRepository cartRepo;
 
+    @Autowired
+    TaxesRepository taxRepo;
+
+    @Autowired
+    PartsRepository partsRepository;
+
     @ModelAttribute("cart")
     public List<Cart> findAll() {
         return cartRepo.findAll();
@@ -30,8 +40,8 @@ public class CartService {
         cartRepo.save(item);
     }
 
-    public void addItemToCart(int partID, String description, float price) {
-        Cart item = new Cart(partID,description,price);
+    public void addItemToCart(int partID, String description, float price, float weight) {
+        Cart item = new Cart(partID,description,price, weight);
         cartRepo.save(item);
     }
 
@@ -42,6 +52,49 @@ public class CartService {
             total += Item.getPrice() * Item.getQty();
         }
         return total;
+    }
+
+    public float getTotalAfterTaxes() {
+        float totalAfterTaxes = 0;
+        float total = getTotalInCart();
+        List<Cart> cart = cartRepo.findAll();
+        List<Taxes> taxBracket = taxRepo.findAll();
+        float weight = 0;
+
+        for (Cart item : cart) {
+            weight += item.getWeight() * item.getQty();
+        }
+
+        float tax = 0;
+        for (Taxes currentBracket : taxBracket) {
+            if (weight > currentBracket.getWeightBracket()) {
+                tax = currentBracket.getTaxRate();
+                break;
+            }
+        }
+
+        totalAfterTaxes = total + (total * tax);
+
+        return totalAfterTaxes;
+    }
+
+    public float getTaxRate() {
+        List<Cart> cart = cartRepo.findAll();
+        List<Taxes> taxBracket = taxRepo.findAll();
+        float weight = 0;
+
+        for (Cart item : cart) {
+            weight += item.getWeight() * item.getQty();
+        }
+
+        float tax = 0;
+        for (Taxes currentBracket : taxBracket) {
+            if (weight > currentBracket.getWeightBracket()) {
+                tax = currentBracket.getTaxRate();
+                break;
+            }
+        }
+        return tax * 100;
     }
 
     public void removeItemFromCart(int id) {
