@@ -30,8 +30,8 @@ public class CartService {
         cartRepo.save(item);
     }
 
-    public void addItemToCart(String description, float price) {
-        Cart item = new Cart(description,price);
+    public void addItemToCart(int partID, String description, float price) {
+        Cart item = new Cart(partID,description,price);
         cartRepo.save(item);
     }
 
