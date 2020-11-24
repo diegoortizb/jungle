@@ -24,11 +24,13 @@ CREATE TABLE taxes (
 );
 
 CREATE TABLE orders (
-    id            int    PRIMARY KEY AUTO_INCREMENT,
-    partID        int    NOT NULL,
-    qty           int    DEFAULT 1,
-    email         VARCHAR(255),
-    status        int DEFAULT 1,
+    id             int    PRIMARY KEY AUTO_INCREMENT,
+    partID         int    NOT NULL,
+    qty            int    DEFAULT 1,
+    name           VARCHAR(255),
+    email          VARCHAR(255),
+    mailingAddress VARCHAR(255),
+    status         int DEFAULT 1,
 
     FOREIGN KEY (partID) REFERENCES parts(id)
 );
