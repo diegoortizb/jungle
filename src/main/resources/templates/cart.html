@@ -55,10 +55,10 @@
                             <div th:id="${part.id}">
                                 <td id="partPicture" th:utext="${part.item}" ></td>
                                 <td id="partdes" th:utext="${part.price}"></td>
+                                <form name="addToCart" method="post" action ="">
                                     <td id="partQuantity">
                                         <input type="text" id="qty" name="qty" th:placeholder="${part.qty}">
                                     </td>
-                                <form name="addToCart" method="post" action ="">
                                     <input type="hidden" id="id" name="id" th:value="${part.id}">
                                     <td> <input type="submit" value="Update Order" script="addTotalsCart()"></td>
                                 </form>
