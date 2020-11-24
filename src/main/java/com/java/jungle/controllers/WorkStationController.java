@@ -1,6 +1,8 @@
 package com.java.jungle.controllers;
 
+import com.java.jungle.service.Db2Service;
 import com.java.jungle.service.OrdersService;
+import com.java.jungle.service.PartsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,10 +20,10 @@ public class WorkStationController {
     @Autowired
     private OrdersService orders;
 
-
     @GetMapping
     public String home(Model model) {
         model.addAttribute("orders", orders.findAll());
+        model.addAttribute("Emails", orders.findAllByEmail());
         return "workstation";
     }
 

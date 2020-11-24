@@ -9,7 +9,7 @@ public class Orders {
     @GeneratedValue
     @Column (name = "id")
     private Integer id;
-    @Column (name = "item_id")
+    @Column (name = "partID")
     private Integer item_id;
     @Column (name = "qty")
     private Integer qty;
@@ -17,6 +17,10 @@ public class Orders {
     private String email;
     @Column (name = "status")
     private Boolean status;
+    @Column (name = "name")
+    private String name;
+    @Column (name = "mailingAddress")
+    private String mailingAdress;
     public Orders(){}
     public Orders(Integer givenItem_id, Integer givenQuantity, String givenEmail){
         item_id = givenItem_id;

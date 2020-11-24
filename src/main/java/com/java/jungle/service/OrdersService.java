@@ -16,6 +16,7 @@ public class OrdersService {
 
     @ModelAttribute("parts")
     public List<Orders> findAll(){return ordersRepository.findAll();}
+    public List <String> findAllByEmail(){return ordersRepository.findAllByEmail();}
 
     public void addItemToOrders(Integer item_id, Integer quantity, String email) {
         Orders item = new Orders(item_id, quantity, email);

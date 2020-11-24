@@ -38,4 +38,7 @@ public class CartService {
     public void removeItemFromCart(int id) {
         cartRepo.deleteById(id);
     }
+
+    public void addItemToCart(String description, float price) {
+    }
 }
