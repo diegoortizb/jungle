@@ -19,5 +19,4 @@ public class PartsService {
     public List<Parts> findAll() {
         return this.partsRepository.findAll();
     }
-
 }

@@ -299,4 +299,4 @@ INSERT INTO inventory(partID, qty) VALUES
 (146,1),
 (147,1),
 (148,1),
-(149,1);
+(149,10);

@@ -1,10 +1,11 @@
-CREATE TABLE parts(
+CREATE TABLE parts (
     id            int    PRIMARY KEY AUTO_INCREMENT,
     desc          VARCHAR(50)    NOT NULL,
     price         decimal(8,2)   NOT NULL,
     weight        decimal(4,2)   NOT NULL,
     pictureURL    VARCHAR(50)    NOT NULL
 );
+
 CREATE TABLE cart (
     id     int          PRIMARY KEY AUTO_INCREMENT,
     partID int          NOT NULL,
