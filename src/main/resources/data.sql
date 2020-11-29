@@ -156,10 +156,6 @@ INSERT INTO parts (id, desc, price, weight, pictureURL) VALUES
 (148, 'Boeing X-32A JSF', 36.90, 2.00, 'http://blitz.cs.niu.edu/pics/air.jpg'),
 (149, 'Pont Yacht', 37.48, 2.00, 'http://blitz.cs.niu.edu/pics/ship.jpg');
 
-INSERT INTO orders(qty, partID, name, email, mailingAddress) VALUES
-(10, 141,'Mr. Blah', 'blah@email.cool','12345 Cool St Chicago,IL'),
-(11, 141, 'Mrs. Blah', 'blah@email.cool', '12345 Uncool St Chicago,IL');
-
 INSERT INTO inventory(partID, qty) VALUES
 (1,10),
 (2,1),

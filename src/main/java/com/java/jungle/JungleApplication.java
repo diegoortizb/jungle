@@ -13,7 +13,5 @@ public class JungleApplication {
         SpringApplication.run(JungleApplication.class, args);
     }
 
-
-
 }
 
