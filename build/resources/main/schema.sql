@@ -7,12 +7,13 @@ CREATE TABLE parts (
 );
 
 CREATE TABLE cart (
-    id     int          PRIMARY KEY AUTO_INCREMENT,
-    partID int          NOT NULL,
-    item   varchar(255) DEFAULT NULL,
-    qty    int          DEFAULT 1,
-    price  decimal(8,2) DEFAULT 0,
-    weight decimal(4,2) DEFAULT 0,
+    id      int          PRIMARY KEY AUTO_INCREMENT,
+    partID  int          NOT NULL,
+    item    varchar(255) DEFAULT NULL,
+    qty     int          DEFAULT 1,
+    price   decimal(8,2) DEFAULT 0,
+    weight  decimal(4,2) DEFAULT 0,
+    partQty int          NOT NULL,
 
     FOREIGN KEY (partID) REFERENCES parts(id)
 );
@@ -24,11 +25,13 @@ CREATE TABLE taxes (
 );
 
 CREATE TABLE orders (
-    id            int    PRIMARY KEY AUTO_INCREMENT,
-    partID        int    NOT NULL,
-    qty           int    DEFAULT 1,
-    email         VARCHAR(255),
-    status        int DEFAULT 1,
+    id             int    PRIMARY KEY AUTO_INCREMENT,
+    partID         int    NOT NULL,
+    qty            int    DEFAULT 1,
+    name           VARCHAR(255),
+    email          VARCHAR(255),
+    mailingAddress VARCHAR(255),
+    status         int DEFAULT 1,
 
     FOREIGN KEY (partID) REFERENCES parts(id)
 );

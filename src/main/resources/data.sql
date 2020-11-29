@@ -161,7 +161,7 @@ INSERT INTO orders(qty, partID, name, email, mailingAddress) VALUES
 (11, 141, 'Mrs. Blah', 'blah@email.cool', '12345 Uncool St Chicago,IL');
 
 INSERT INTO inventory(partID, qty) VALUES
-(1,1),
+(1,10),
 (2,1),
 (3,1),
 (4,1),

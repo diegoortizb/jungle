@@ -4,8 +4,8 @@ com/java/jungle/controllers/AdminController.java
  com.java.jungle.controllers.AdminController
 com/java/jungle/model/db2Entity.java
  com.java.jungle.model.db2Entity
-com/java/jungle/model/Cart.java
- com.java.jungle.model.Cart
+com/java/jungle/repository/Parts/PartsRepository.java
+ com.java.jungle.repository.Parts.PartsRepository
 com/java/jungle/model/dto/CustomerView.java
  com.java.jungle.model.dto.CustomerView
 com/java/jungle/config/PartsConfigController.java
@@ -32,13 +32,13 @@ com/java/jungle/repository/Parts/TaxesRepository.java
  com.java.jungle.repository.Parts.TaxesRepository
 com/java/jungle/config/Db2ConfigController.java
  com.java.jungle.config.Db2ConfigController
-com/java/jungle/service/CustomerService.java
- com.java.jungle.service.CustomerService
-com/java/jungle/service/PartsService.java
- com.java.jungle.service.PartsService
-com/java/jungle/repository/Parts/PartsRepository.java
- com.java.jungle.repository.Parts.PartsRepository
-com/java/jungle/controllers/CustomerController.java
- com.java.jungle.controllers.CustomerController
 com/java/jungle/resource/UsersResource.java
  com.java.jungle.resource.UsersResource
+com/java/jungle/service/PartsService.java
+ com.java.jungle.service.PartsService
+com/java/jungle/service/CustomerService.java
+ com.java.jungle.service.CustomerService
+com/java/jungle/model/Cart.java
+ com.java.jungle.model.Cart
+com/java/jungle/controllers/CustomerController.java
+ com.java.jungle.controllers.CustomerController
