@@ -6,6 +6,7 @@ import com.java.jungle.repository.Parts.OrdersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -23,8 +24,13 @@ public class OrdersService {
         ordersRepository.save(item);
     }
 
+    public List<Orders> findOrdersOf(String email){
+        return ordersRepository.findOrdersOf(email);
+    }
+
     public void removeItemFromOrders(int id) {
         ordersRepository.deleteById(id);
+
     }
 
     public void updateStatus(int id, Boolean status) {

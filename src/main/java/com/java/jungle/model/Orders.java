@@ -20,7 +20,9 @@ public class Orders {
     @Column (name = "name")
     private String name;
     @Column (name = "mailingAddress")
-    private String mailingAdress;
+    private String mailingAddress;
+    @Column (name = "price")
+    private float price;
     public Orders(){}
     public Orders(Integer givenItem_id, Integer givenQuantity, String givenEmail){
         item_id = givenItem_id;
