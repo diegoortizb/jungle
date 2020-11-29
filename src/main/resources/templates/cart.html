@@ -57,10 +57,13 @@
                                 <td id="partdes" th:utext="${part.price}"></td>
                                 <form name="addToCart" method="post" action ="">
                                     <td id="partQuantity">
-                                        <input type="text" id="qty" name="qty" th:placeholder="${part.qty}">
+                                        <select name="qty">
+                                            <option id="qty" name="qty" th:each="i : ${#numbers.sequence(0, 10)}" th:value="${i}" th:text="${i}"
+                                                    th:selected="${i==part.qty}"></option>
+                                        </select>
                                     </td>
                                     <input type="hidden" id="id" name="id" th:value="${part.id}">
-                                    <td> <input type="submit" value="Update Order" script="addTotalsCart()"></td>
+                                    <td> <input type="submit" value="Update Order"></td>
                                 </form>
                             </div>
                         </tr>

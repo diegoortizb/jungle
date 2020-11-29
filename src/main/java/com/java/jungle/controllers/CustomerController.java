@@ -48,9 +48,10 @@ public class CustomerController {
     public String addItemToCart(@RequestParam(value="partID") Integer partID,
                                 @RequestParam(value="description") String description,
                                 @RequestParam(value="price") float price,
-                                @RequestParam(value="weight") float weight) {
+                                @RequestParam(value="weight") float weight,
+                                @RequestParam(value="partQty") int partQty) {
         //TODO MUST ADD A WAY TO ADD 1 TO cart.qty IF ITEM IS ALREADY IN CART
-        customerService.addItemToCart(partID,description, price, weight);
+        customerService.addItemToCart(partID,description, price, weight, partQty);
 
         return "redirect:/customer";
     }

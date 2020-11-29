@@ -28,12 +28,16 @@ public class CustomerService {
 
     public void updateQty(int id, int qty) {
         Cart item = cartRepo.findById(id).get();
-        item.setQty(qty);
-        cartRepo.save(item);
+        if (qty == 0) {
+            cartRepo.delete(item);
+        } else {
+            item.setQty(qty);
+            cartRepo.save(item);
+        }
     }
 
-    public void addItemToCart(int partID, String description, float price, float weight) {
-        Cart item = new Cart(partID,description,price, weight);
+    public void addItemToCart(int partID, String description, float price, float weight, int partQty) {
+        Cart item = new Cart(partID,description,price, weight, partQty);
         cartRepo.save(item);
     }
 
