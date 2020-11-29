@@ -16,6 +16,7 @@ public class db2Entity {
     private Float weight;
     @Column(name = "pictureURL")
     private String picture;
+
     public db2Entity(){}
 
     public Integer getNumber() {
