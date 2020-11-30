@@ -4,8 +4,14 @@
 //('another item',5000);
 
 INSERT INTO taxes (weightBracket, taxRate) VALUES
-(20,0.15),
-(40,0.30);
+(0,0.02),
+(10,0.05),
+(20,0.10),
+(30,0.15),
+(40,0.20),
+(50,0.25),
+(60,0.30),
+(70,0.35);
 
 INSERT INTO parts (id, desc, price, weight, pictureURL) VALUES
 (1, 'windshield w/ polymer', 178.76, 0.55, 'http://blitz.cs.niu.edu/pics/shi.jpg'),
@@ -150,10 +156,8 @@ INSERT INTO parts (id, desc, price, weight, pictureURL) VALUES
 (148, 'Boeing X-32A JSF', 36.90, 2.00, 'http://blitz.cs.niu.edu/pics/air.jpg'),
 (149, 'Pont Yacht', 37.48, 2.00, 'http://blitz.cs.niu.edu/pics/ship.jpg');
 
-INSERT INTO orders(qty, partID, email, status) VALUES (10, 141, 'blah@email.cool',0), (11, 141, 'blah@email.cool',1);
-
 INSERT INTO inventory(partID, qty) VALUES
-(1,1),
+(1,10),
 (2,1),
 (3,1),
 (4,1),
@@ -293,4 +297,4 @@ INSERT INTO inventory(partID, qty) VALUES
 (146,1),
 (147,1),
 (148,1),
-(149,1);
+(149,10);

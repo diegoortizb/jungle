@@ -39,7 +39,7 @@ public class WorkStationController {
     }
 
     @RequestMapping (value = "/ws", method = RequestMethod.POST)
-    public String updateStatus(@RequestParam(value = "id") int id, @RequestParam(value = "status") Boolean status){
+    public String updateStatus(@RequestParam(value = "id") int id, @RequestParam(value = "status") int status){
         orders.updateStatus(id,status);
         return "redirect:/ws";
     }
