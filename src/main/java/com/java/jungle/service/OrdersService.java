@@ -33,7 +33,7 @@ public class OrdersService {
 
     }
 
-    public void updateStatus(int id, Boolean status) {
+    public void updateStatus(int id, int status) {
         Orders order = ordersRepository.findById(id).get();
         order.setStatus(status);
         ordersRepository.save(order);

@@ -100,6 +100,4 @@ public class PartsConfigController {
     public PlatformTransactionManager partsTransactionManager( final @Qualifier ("partsEntityManagerFactory") LocalContainerEntityManagerFactoryBean partsEntityManagerFactory){
         return new JpaTransactionManager(partsEntityManagerFactory.getObject());
     }
-
-
 }

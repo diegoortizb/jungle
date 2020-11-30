@@ -16,7 +16,7 @@ public class Orders {
     @Column (name = "email")
     private String email;
     @Column (name = "status")
-    private Boolean status;
+    private int status;
     @Column (name = "name")
     private String name;
     @Column (name = "mailingAddress")
@@ -46,7 +46,7 @@ public class Orders {
         return email;
     }
 
-    public Boolean getStatus() {
+    public int getStatus() {
         return status;
     }
 
@@ -66,7 +66,7 @@ public class Orders {
         this.email = email;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 }

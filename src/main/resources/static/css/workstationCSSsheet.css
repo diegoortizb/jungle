@@ -1,3 +1,12 @@
 h2{
 text-align: center;
 }
+#toShipDiv{
+    display:none;
+}
+.emailTable{
+    font-size: large;
+}
+.emailTable{
+    display:block;
+}

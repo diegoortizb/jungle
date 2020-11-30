@@ -31,7 +31,7 @@
             </div>
         </div>
         <h2>Welcome to the Work Station!</h2>
-        <button id="ordersButton">Orders</button>
+        <button id="ordersButton" href="/ws">Orders</button>
         <button id = "toShip">To Ship</button>
         <table id="allOrders">
             <tr>
@@ -48,26 +48,100 @@
         <script th:inline="javascript">
             /*<![CDATA[*/
 
+            function setVisible(Element){
+                document.getElementById("allOrders").style.display = "none";
+                document.getElementById("toShipDiv").style.display = "none";
+
+                Element.style.display = "block";
+            }
 
             var ordersArray = Array.from( /*[[${orders}]]*/ null);
-            var emailArray = Array.from(/*[[${Emails}]]*/ null)
+            var emailArray = Array.from(/*[[${Emails}]]*/ null);
+            var ordersByEmail = [];
+
+            var xhttp = new XMLHttpRequest();
+            xhttp.responseType = "json";
 
             ordersArray.forEach( tuple => {
                     // if (tuple.status == 1) return;
                     let tableRow = document.createElement("tr");
 
-                    tableRow.appendChild( document.createElement("td")).innerText=tuple.item_id;
-                    tableRow.appendChild( document.createElement("td")).innerText=tuple.qty;
-                    tableRow.appendChild( document.createElement("td")).innerText=tuple.email;
-                    tableRow.appendChild( document.createElement("td")).innerText= (tuple.status === true)? "shipped" : "needs packing";
+                    tableRow.appendChild( document.createElement("td") ).innerText=tuple.item_id;
+                    tableRow.appendChild( document.createElement("td") ).innerText=tuple.qty;
+                    tableRow.appendChild( document.createElement("td") ).innerText=tuple.email;
+                    tableRow.appendChild( document.createElement("td") ).innerText= (tuple.status === 1)? "needs packing" : "shipped";
 
                     document.getElementById("allOrders").appendChild(tableRow);
 
                 }
 
             );
-            document.getElementById("toShip").addEventListener('click',e=>{})
-            console.log(emailArray);
+
+            document.getElementById("ordersButton").addEventListener('click',()=>{window.location.reload();})
+            document.getElementById("toShip").addEventListener('click',e=>{
+                setVisible(document.getElementById("toShipDiv"));
+                document.getElementById("toShipDiv").innerHTML = null;
+                emailArray.forEach(emailString =>{
+                    document.getElementById("toShipDiv").appendChild( document.createElement("h4") ).innerText = "Click below to see the orders of " + emailString;
+
+                    var emailTable = document.getElementById("toShipDiv").appendChild(document.createElement("TABLE"));
+                    emailTable.innerText = "Click here";
+                    emailTable.dataset.email = emailString;
+                    emailTable.className = "emptyEmailTable";
+                    emailTable.addEventListener('click', handleEmailDiv, {once:true});
+
+                });
+
+                function handleEmailDiv(event){
+                    var emailTable = event.target;
+                    emailTable.innerHTML = null;
+                    emailTable.className = "emailTable";
+                    var tableHeader = emailTable.appendChild( document.createElement("TR") );
+
+                    tableHeader.appendChild(document.createElement("TH")).innerText = "Item Id";
+                    tableHeader.appendChild(document.createElement("TH")).innerText = "quantity";
+                    tableHeader.appendChild(document.createElement("TH")).innerText = "address";
+
+
+                    xhttp.open("GET","/ws/ordersof?email=" + emailTable.dataset.email,true, null, null);
+                    xhttp.send();
+                    xhttp.onload = ()=>{
+                        if (xhttp.readyState ===4 && xhttp.status === 200){
+                            console.log(xhttp.response);
+                            Array.from(xhttp.response).forEach(ordersTuple=>{
+                                var emailTableRow = emailTable.appendChild( document.createElement("TR") );
+                                emailTableRow.appendChild( document.createElement("TD") ).innerText = ordersTuple["item_id"];
+                                emailTableRow.appendChild( document.createElement("TD") ).innerText = ordersTuple["qty"];
+                                emailTableRow.appendChild( document.createElement("TD") ).innerText = ordersTuple["mailingAddress"];
+
+                                var shipButton = emailTableRow.appendChild( document.createElement("BUTTON") );
+                                shipButton.innerText = "Mark as Shipped";
+                                shipButton.addEventListener('click',shipButtonHandler,{once:true});
+                                emailTableRow.dataset.itemID = ordersTuple["item_id"];
+                            });
+                        }
+                    }
+                }
+
+                function shipButtonHandler(event){
+
+                    var rowParent = event.target.parentNode;
+                    xhttp.open("POST","/ws/orderID?id=" + rowParent.dataset.itemID + "&status=" + 0);
+                    xhttp.send();
+                    rowParent.style.visibility= "hidden";
+                }
+                // xhttp.onload =  function (){
+                //     if (this.readyState === 4 && this.status === 200)
+                //     {
+                //         ordersByEmail[ordersByEmail.length] = xhttp.response;
+                //         console.log(xhttp.response);
+                //         console.log("onreadystatechagne was called");
+                //         document.getElementById("toShipDiv").appendChild(document.createElement("DIV"));
+                //     }
+                // }
+
+            });
+
 
             /*]]>*/
         </script>
