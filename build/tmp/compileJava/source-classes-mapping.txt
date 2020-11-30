@@ -40,11 +40,11 @@ com/java/jungle/model/Parts.java
  com.java.jungle.model.Parts
 com/java/jungle/service/PartsService.java
  com.java.jungle.service.PartsService
+com/java/jungle/service/CustomerService.java
+ com.java.jungle.service.CustomerService
 com/java/jungle/service/OrdersService.java
  com.java.jungle.service.OrdersService
 com/java/jungle/repository/Parts/OrdersRepository.java
  com.java.jungle.repository.Parts.OrdersRepository
-com/java/jungle/service/CustomerService.java
- com.java.jungle.service.CustomerService
 com/java/jungle/controllers/CustomerController.java
  com.java.jungle.controllers.CustomerController

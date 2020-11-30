@@ -81,7 +81,6 @@ public class CustomerController {
 
     @RequestMapping(value="/customer/cart/creditcard", method=RequestMethod.GET)
     public String creditCardInfo(Model model) {
-        model.addAttribute("name", "Steve");
         model.addAttribute("totalTax", customerService.getTotalAfterTaxes());
         return "creditcard";
     }
