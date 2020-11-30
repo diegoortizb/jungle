@@ -2,6 +2,7 @@ package com.java.jungle.controllers;
 
 import com.java.jungle.model.dto.CustomerView;
 import com.java.jungle.repository.Parts.InventoryRepository;
+import com.java.jungle.repository.Parts.OrdersRepository;
 import com.java.jungle.repository.Parts.PartsRepository;
 import com.java.jungle.service.CustomerService;
 import com.java.jungle.service.PartsService;
@@ -79,8 +80,8 @@ public class CustomerController {
     }
 
     @RequestMapping(value="/customer/cart/creditcard", method=RequestMethod.GET)
-    public String creditCardInfo(Model model, @RequestParam(value="name") String name) {
-        model.addAttribute("name", name);
+    public String creditCardInfo(Model model) {
+        model.addAttribute("name", "Steve");
         model.addAttribute("totalTax", customerService.getTotalAfterTaxes());
         return "creditcard";
     }
@@ -90,6 +91,7 @@ public class CustomerController {
                            @RequestParam(value="email") String email,
                            @RequestParam(value="mailingAddress") String mailingAddress) {
 
+        customerService.addOrder(name,email,mailingAddress);
         return "redirect:/customer/cart/creditcard";
     }
 

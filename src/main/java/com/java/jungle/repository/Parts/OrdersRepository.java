@@ -15,6 +15,6 @@ public interface OrdersRepository extends JpaRepository<Orders, Integer> {
     @Query("SELECT DISTINCT ordertuple.email FROM Orders ordertuple")
     List <String> findAllByEmail();
 
-    @Query("SELECT ordertuple FROM Orders ordertuple WHERE ordertuple.email = :#{#customer} AND ordertuple.status = false")
+    @Query("SELECT ordertuple FROM Orders ordertuple WHERE ordertuple.email = :#{#customer} AND ordertuple.status = 1")
     List <Orders> findOrdersOf(@Param("customer") String customer);
 }

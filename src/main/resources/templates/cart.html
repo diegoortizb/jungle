@@ -87,16 +87,16 @@
                             <div id="checkout form">
                                 <form name="addOrder" method="post" action ="/customer/cart/addOrder">
                                     <label for="name">Name</label>
-                                    <input type="text" class="form-control" id="name" placeholder="John Doe">
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="John Doe">
 
                                     <label for="email">Email</label>
-                                    <input type=text class="form-control" id="email" placeholder="name@example.com">
+                                    <input type=text class="form-control" id="email" name="email" placeholder="name@example.com">
 
-                                    <label for="address">Mailing Address</label>
-                                    <input type="text" class="form-control" id="address" placeholder="12345 N Road St, DeKalb IL">
+                                    <label for="mailingAddress">Mailing Address</label>
+                                    <input type="text" class="form-control" id="mailingAddress" name="mailingAddress" placeholder="12345 N Road St, DeKalb IL">
 
-                                    <label for="amount">Amount: </label>
-                                    <input type="hidden" id="amount" name="amount" th:value="${totalTax}" th:utext="${totalTax}"><br>
+                                    <label for="price">Amount: </label>
+                                    <input type="hidden" id="price" name="price" th:value="${totalTax}" th:utext="${totalTax}"><br>
 
                                     <input type="submit" value="Begin Order">
                                 </form>

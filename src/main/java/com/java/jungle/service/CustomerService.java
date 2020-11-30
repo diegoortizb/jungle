@@ -1,6 +1,7 @@
 package com.java.jungle.service;
 
 import com.java.jungle.model.Cart;
+import com.java.jungle.model.Orders;
 import com.java.jungle.model.Taxes;
 import com.java.jungle.repository.Parts.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ public class CustomerService {
     @Autowired
     private PartsRepository partsRepository;
 
+    @Autowired
+    private OrdersRepository ordersRepository;
+
     @ModelAttribute("cart")
     public List<Cart> findAll() {
         return cartRepo.findAll();
@@ -33,6 +37,14 @@ public class CustomerService {
         } else {
             item.setQty(qty);
             cartRepo.save(item);
+        }
+    }
+
+    public void addOrder(String name, String email, String address) {
+        List<Cart> cart = cartRepo.findAll();
+        for (Cart part : cart) {
+            Orders order = new Orders(email,name,address,part.getPrice(),part.getId(), part.getQty());
+            ordersRepository.save(order);
         }
     }
 

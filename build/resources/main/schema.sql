@@ -32,6 +32,7 @@ CREATE TABLE orders (
     email          VARCHAR(255),
     mailingAddress VARCHAR(255),
     status         int DEFAULT 1,
+    price          decimal(8,2),
 
     FOREIGN KEY (partID) REFERENCES parts(id)
 );
