@@ -12,7 +12,7 @@
           integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
           crossorigin="anonymous">
     <script language="JavaScript" src="../static/js/cart.js"></script>
-    <title>Customer</title>
+    <title>Cart</title>
 </head>
 
     <body>
@@ -51,22 +51,20 @@
                             <th>Quantity</th>
                             <th>Update</th>
                         </tr>
-                        <script type="text/javascript" th:inline="javascript">
-                            var items = [];
-                            /*[# th:each="item : ${cart}"]*/
-                            items.push("[(${item})]");
-                            /*[/]*/
-                        </script>
                         <tr id="cart" th:each = "part : ${cart}">
                             <div th:id="${part.id}">
                                 <td id="partPicture" th:utext="${part.item}" ></td>
                                 <td id="partdes" th:utext="${part.price}"></td>
-                                <form name="addToCart" method="post" action ="">
+                                <form name="addToCart" method="post" action ="/customer/cart/update">
                                     <td id="partQuantity">
-                                        <input type="text" id="qty" name="qty" th:placeholder="${part.qty}">
+                                        <select name="qty">
+                                            <option id="qty" name="qty" th:each="i : ${#numbers.sequence(0, part.partQty)}" th:value="${i}" th:text="${i}"
+                                                    th:selected="${i==part.qty}">
+                                            </option>
+                                        </select>
                                     </td>
                                     <input type="hidden" id="id" name="id" th:value="${part.id}">
-                                    <td> <input type="submit" value="Update Order" script="addTotalsCart()"></td>
+                                    <td> <input type="submit" value="Update Order"></td>
                                 </form>
                             </div>
                         </tr>
@@ -83,6 +81,28 @@
                             <td id="totalTaxed" th:utext="${totalTax}">0</td>
                         </tr>
                     </table>
+
+                    <div class="container d-flex flex-column flex-md-row justify-content-between">
+                        <div class="form-group">
+                            <div id="checkout form">
+                                <form name="addOrder" method="post" action ="/customer/cart/addOrder">
+                                    <label for="name">Name</label>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="John Doe">
+
+                                    <label for="email">Email</label>
+                                    <input type=text class="form-control" id="email" name="email" placeholder="name@example.com">
+
+                                    <label for="mailingAddress">Mailing Address</label>
+                                    <input type="text" class="form-control" id="mailingAddress" name="mailingAddress" placeholder="12345 N Road St, DeKalb IL">
+
+                                    <label for="price">Amount: </label>
+                                    <input type="hidden" id="price" name="price" th:value="${totalTax}" th:utext="${totalTax}"><br>
+
+                                    <input type="submit" value="Begin Order">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

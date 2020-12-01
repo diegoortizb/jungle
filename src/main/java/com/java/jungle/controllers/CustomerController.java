@@ -2,6 +2,7 @@ package com.java.jungle.controllers;
 
 import com.java.jungle.model.dto.CustomerView;
 import com.java.jungle.repository.Parts.InventoryRepository;
+import com.java.jungle.repository.Parts.OrdersRepository;
 import com.java.jungle.repository.Parts.PartsRepository;
 import com.java.jungle.service.CustomerService;
 import com.java.jungle.service.PartsService;
@@ -48,9 +49,10 @@ public class CustomerController {
     public String addItemToCart(@RequestParam(value="partID") Integer partID,
                                 @RequestParam(value="description") String description,
                                 @RequestParam(value="price") float price,
-                                @RequestParam(value="weight") float weight) {
+                                @RequestParam(value="weight") float weight,
+                                @RequestParam(value="partQty") int partQty) {
         //TODO MUST ADD A WAY TO ADD 1 TO cart.qty IF ITEM IS ALREADY IN CART
-        customerService.addItemToCart(partID,description, price, weight);
+        customerService.addItemToCart(partID,description, price, weight, partQty);
 
         return "redirect:/customer";
     }
@@ -70,24 +72,26 @@ public class CustomerController {
     //
     //  method updates the shopping cart to the given quantity
     //
-    @RequestMapping(value="/customer/cart", method=RequestMethod.POST)
+    @RequestMapping(value="/customer/cart/update", method=RequestMethod.POST)
     public String updateQty(@RequestParam(value="id") int id,
                             @RequestParam(value="qty") int qty) {
         customerService.updateQty(id,qty);
         return "redirect:/customer/cart";
     }
 
-    // TODO THIS METHOD WILL DELETE ITEMS FROM THE SHOPPING CART
-    //
-    //
-    @RequestMapping(value="/customer/cart", method=RequestMethod.DELETE)
-    public ResponseEntity removeItemFromCart(@RequestParam(value="id") int id) {
-        try {
-            customerService.removeItemFromCart(id);
-        } catch (Exception e) {
-            return ResponseEntity.ok(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-        return ResponseEntity.ok(HttpStatus.OK);
+    @RequestMapping(value="/customer/cart/creditcard", method=RequestMethod.GET)
+    public String creditCardInfo(Model model) {
+        model.addAttribute("totalTax", customerService.getTotalAfterTaxes());
+        return "creditcard";
+    }
+
+    @RequestMapping(value="/customer/cart/addOrder", method=RequestMethod.POST)
+    public String addOrder(@RequestParam(value="name") String name,
+                           @RequestParam(value="email") String email,
+                           @RequestParam(value="mailingAddress") String mailingAddress) {
+
+        customerService.addOrder(name,email,mailingAddress);
+        return "redirect:/customer/cart/creditcard";
     }
 
 

@@ -11,10 +11,7 @@ INSERT INTO taxes (weightBracket, taxRate) VALUES
 (40,0.20),
 (50,0.25),
 (60,0.30),
-(70,0.35),
-(80,0.40),
-(90,0.45),
-(100,0.50);
+(70,0.35);
 
 INSERT INTO parts (id, desc, price, weight, pictureURL) VALUES
 (1, 'windshield w/ polymer', 178.76, 0.55, 'http://blitz.cs.niu.edu/pics/shi.jpg'),
@@ -160,7 +157,7 @@ INSERT INTO parts (id, desc, price, weight, pictureURL) VALUES
 (149, 'Pont Yacht', 37.48, 2.00, 'http://blitz.cs.niu.edu/pics/ship.jpg');
 
 INSERT INTO inventory(partID, qty) VALUES
-(1,1),
+(1,10),
 (2,1),
 (3,1),
 (4,1),
@@ -300,4 +297,4 @@ INSERT INTO inventory(partID, qty) VALUES
 (146,1),
 (147,1),
 (148,1),
-(149,1);
+(149,10);
