@@ -150,7 +150,7 @@ INSERT INTO parts (id, desc, price, weight, pictureURL) VALUES
 (148, 'Boeing X-32A JSF', 36.90, 2.00, 'http://blitz.cs.niu.edu/pics/air.jpg'),
 (149, 'Pont Yacht', 37.48, 2.00, 'http://blitz.cs.niu.edu/pics/ship.jpg');
 
-INSERT INTO orders(qty, partID, email, status, name, mailingAddress, price) VALUES (10, 141, 'blah@email.cool',1, 'Alex','1425 West Lincoln Highway DeKalb, IL 60115', 50.00),
+INSERT INTO orders(qty, partID, email, status, name, mailingAddress, price) VALUES (10, 141, 'blah@email.cool',1, 'Alex','1425 West Lincoln Highway DeKalb, IL 60115', 50.24),
                                                                                    (11, 141, 'blah@email.cool',1, 'Badea','1425 West Lincoln Highway DeKalb, IL 60115', 50.00),
                                                                                    (11, 141, 'blah@email.lame',1, 'Diego','1425 West Lincoln Highway DeKalb, IL 60115', 50.00),
                                                                                    (11, 141, 'badeaalamidi@gmail.com',1, 'Josh','1425 West Lincoln Highway DeKalb, IL 60115', 50.00);

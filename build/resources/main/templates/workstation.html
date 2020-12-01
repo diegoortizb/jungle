@@ -96,6 +96,11 @@
                     var emailTable = event.target;
                     emailTable.innerHTML = null;
                     emailTable.className = "emailTable";
+
+                    var invoiceButton = emailTable.appendChild( document.createElement("BUTTON") )
+                    invoiceButton.innerText = "print invoice";
+
+
                     var tableHeader = emailTable.appendChild( document.createElement("TR") );
 
                     tableHeader.appendChild(document.createElement("TH")).innerText = "Item Id";
@@ -108,7 +113,7 @@
                     xhttp.onload = ()=>{
                         if (xhttp.readyState ===4 && xhttp.status === 200){
                             console.log(xhttp.response);
-                            Array.from(xhttp.response).forEach(ordersTuple=>{
+                            Array.from(xhttp.response).forEach((ordersTuple, index, array)=>{
                                 var emailTableRow = emailTable.appendChild( document.createElement("TR") );
                                 emailTableRow.appendChild( document.createElement("TD") ).innerText = ordersTuple["item_id"];
                                 emailTableRow.appendChild( document.createElement("TD") ).innerText = ordersTuple["qty"];
@@ -116,8 +121,13 @@
 
                                 var shipButton = emailTableRow.appendChild( document.createElement("BUTTON") );
                                 shipButton.innerText = "Mark as Shipped";
-                                shipButton.addEventListener('click',shipButtonHandler,{once:true});
+                                shipButton.addEventListener('click',(event)=>{shipButtonHandler(event);
+                                                                              printLabel(ordersTuple);
+                                        },{once:true});
                                 emailTableRow.dataset.orderid = ordersTuple["id"];
+
+                                //TEST IF FIRST ITERATION, IN WHICH CASE ASSIGN TO var invoiceButton
+                                if (index===0) invoiceButton.addEventListener('click',e=>{printInvoice(array);});
 
                             });
                         }
@@ -142,6 +152,73 @@
                     emailPost.onload=()=>{console.log(emailPost.response);}
                     shipRequest.onload=()=>{console.log(shipRequest.response);}
                     rowParent.style.visibility= "hidden";
+                }
+
+                function printLabel(tuple){
+
+                    var windowVariable = window.open();
+
+                    var html = "<!DOCTYPE HTML>";
+                    html +='<html lang="en-us">';
+                    html+="<head><style>" +
+                        ".deliveryAddress{text-aligh:right; }" +
+                        "h1{text-align:center;}" +
+                        "</style>" +
+                        "</head>";
+                    html+="<body>";
+                        html+="<h1>SHIPPING LABEL</h1>";
+                        html+="<h2>Priority Mail</h2>";
+                        html+="<br><br>";
+                        html+="<h5>Jungle Corp</h5>";
+                        html+="<h5>1425 West Lincoln Highway DeKalb, IL 60115</h5>";
+                        html+="<h4 class='deliveryAddress'>"+tuple["name"]+"</h4>";
+                        html+="<h4 class='deliveryAddress'>"+tuple["mailingAddress"]+"</h4>";
+                    html+="</body>";
+
+                    windowVariable.document.write(html);
+                    windowVariable.window.print();
+                    windowVariable.document.close();
+                    // windowVariable.close();
+                }
+
+                function printInvoice(tuples){
+
+                    var windowVariable = window.open();
+                    var total = 0.00;
+
+                    var html = "<!DOCTYPE HTML>";
+                    html +='<html lang="en-us">';
+                    html += "<head><style></style></head>";
+                    html +="<body>";
+                        html +="<h1>JUNGLE INVOICE</h1>";
+                        html +="<br><br>";
+                        html +="<h4>"+tuples[0]["name"]+"</h4>";
+                        html +="<h4>"+tuples[0]["mailingAddress"]+"</h4>";
+                        html +="<br>";
+                        html +="<table>";
+                        html +="<tr>";
+                            html +="<th> item id </th>";
+                            html +="<th> qty </th>";
+                            html +="<th> price</th>";
+                            html +="<th> Date Submitted</th>";
+                        html +="</tr>";
+
+                    for (const tuple of tuples){
+                        html +="<tr>";
+                        html +="<td>"+tuple["item_id"]+"</td>";
+                        html +="<td>"+tuple["qty"]+"</td>";
+                        html +="<td>"+tuple["price"]+"</td>";
+                        html +="<td>"+tuple["subDate"]+"</td>";
+                        html +="</tr>";
+                        total+=tuple["price"];
+                    }
+                        html+="<br><h4>total due: "+Math.round((total + Number.EPSILON) * 100) / 100 +"</h4>";
+                    html +="</body>";
+                    windowVariable.document.write(html);
+                    windowVariable.window.print();
+                    windowVariable.document.close();
+                    // windowVariable.close();
+
                 }
                 // xhttp.onload =  function (){
                 //     if (this.readyState === 4 && this.status === 200)

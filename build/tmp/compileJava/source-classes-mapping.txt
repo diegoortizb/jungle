@@ -14,12 +14,12 @@ com/java/jungle/model/Orders.java
  com.java.jungle.model.Orders
 com/java/jungle/repository/Parts/InventoryRepository.java
  com.java.jungle.repository.Parts.InventoryRepository
-com/java/jungle/component/EmailComponent.java
- com.java.jungle.component.EmailComponent
+com/java/jungle/controllers/WorkStationController.java
+ com.java.jungle.controllers.WorkStationController
 com/java/jungle/repository/Parts/TaxesRepository.java
  com.java.jungle.repository.Parts.TaxesRepository
-com/java/jungle/service/EmailService.java
- com.java.jungle.service.EmailService
+com/java/jungle/controllers/CustomerController.java
+ com.java.jungle.controllers.CustomerController
 com/java/jungle/config/Db2ConfigController.java
  com.java.jungle.config.Db2ConfigController
 com/java/jungle/model/Inventory.java
@@ -48,7 +48,7 @@ com/java/jungle/service/OrdersService.java
  com.java.jungle.service.OrdersService
 com/java/jungle/repository/Parts/PartsRepository.java
  com.java.jungle.repository.Parts.PartsRepository
-com/java/jungle/controllers/CustomerController.java
- com.java.jungle.controllers.CustomerController
-com/java/jungle/controllers/WorkStationController.java
- com.java.jungle.controllers.WorkStationController
+com/java/jungle/component/EmailComponent.java
+ com.java.jungle.component.EmailComponent
+com/java/jungle/service/EmailService.java
+ com.java.jungle.service.EmailService
