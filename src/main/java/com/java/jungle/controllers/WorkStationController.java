@@ -1,5 +1,7 @@
 package com.java.jungle.controllers;
 
+import com.fasterxml.jackson.databind.node.TextNode;
+import com.java.jungle.component.EmailComponent;
 import com.java.jungle.model.Orders;
 import com.java.jungle.service.Db2Service;
 import com.java.jungle.service.OrdersService;
@@ -20,6 +22,9 @@ public class WorkStationController {
 
     @Autowired
     private OrdersService orders;
+
+    @Autowired
+    private EmailComponent emailService;
 
     @RequestMapping(value="/ws", method=RequestMethod.GET)
     public String home(Model model) {
@@ -44,9 +49,21 @@ public class WorkStationController {
         return orders.findOrdersOf(email);
     }
 
-    @RequestMapping (value = "/ws/orderID", method = RequestMethod.POST)
-    public void updateStatus(@RequestParam int id, @RequestParam int status){
-        orders.updateStatus(id, status);
-//        return "redirect:/ws";
+    @RequestMapping (value = "/ws/update", method = RequestMethod.POST)
+    public ResponseEntity updateStatus(@RequestParam(value = "id") String id){
+        try{orders.updateStatus(Integer.parseInt(id));}
+        catch (Exception e){
+            return ResponseEntity.ok(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return ResponseEntity.ok(HttpStatus.OK);
+    }
+
+    @RequestMapping (value = "/sendEmail", method = RequestMethod.POST)
+    public ResponseEntity sendEmail(@RequestBody TextNode email){
+        try{emailService.sendSimpleMessage(email.asText());}
+        catch (Exception e){
+            return ResponseEntity.ok(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return ResponseEntity.ok(HttpStatus.OK);
     }
 }

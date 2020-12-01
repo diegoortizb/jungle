@@ -117,7 +117,8 @@
                                 var shipButton = emailTableRow.appendChild( document.createElement("BUTTON") );
                                 shipButton.innerText = "Mark as Shipped";
                                 shipButton.addEventListener('click',shipButtonHandler,{once:true});
-                                emailTableRow.dataset.itemID = ordersTuple["item_id"];
+                                emailTableRow.dataset.orderid = ordersTuple["id"];
+
                             });
                         }
                     }
@@ -126,10 +127,20 @@
                 function shipButtonHandler(event){
 
                     var rowParent = event.target.parentNode;
-                    // var form = new FormData();
-                    // form.append("status", "0");
-                    xhttp.open("POST","/ws/orderID?id=" + rowParent.dataset.itemID);
-                    xhttp.send(JSON.stringify("0"));
+                    var recipientEmail = rowParent.parentNode.dataset.email;
+
+                    var shipRequest = new XMLHttpRequest();
+                    var emailPost = new XMLHttpRequest();
+
+                    //SET THE TUPLE TO "SHIPPED"
+                    shipRequest.open("POST", "ws/update?id="+rowParent.dataset.orderid);
+                    shipRequest.send();
+                    //EMAIL THE RECIPIENT
+                    emailPost.open("POST", "/sendEmail");
+                    emailPost.setRequestHeader("Content-Type","application/json")
+                    emailPost.send(`\"${recipientEmail}\"`);
+                    emailPost.onload=()=>{console.log(emailPost.response);}
+                    shipRequest.onload=()=>{console.log(shipRequest.response);}
                     rowParent.style.visibility= "hidden";
                 }
                 // xhttp.onload =  function (){

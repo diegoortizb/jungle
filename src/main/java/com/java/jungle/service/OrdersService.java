@@ -19,8 +19,8 @@ public class OrdersService {
     public List<Orders> findAll(){return ordersRepository.findAll();}
     public List <String> findAllByEmail(){return ordersRepository.findAllByEmail();}
 
-    public void addItemToOrders(Integer item_id, Integer quantity, String email) {
-        Orders item = new Orders(item_id, quantity, email);
+    public void addItemToOrders(int item_id, int quantity, String email, int status, String name, String address, float price, java.sql.Date date) {
+        Orders item = new Orders(item_id, quantity, email, status, name, address,price,date);
         ordersRepository.save(item);
     }
 
@@ -33,9 +33,10 @@ public class OrdersService {
 
     }
 
-    public void updateStatus(int id, int status) {
+    public void updateStatus(int id) {
+
         Orders order = ordersRepository.findById(id).get();
-        order.setStatus(status);
+        order.setStatus(0);
         ordersRepository.save(order);
     }
 }

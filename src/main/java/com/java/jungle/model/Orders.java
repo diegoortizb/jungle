@@ -1,6 +1,7 @@
 package com.java.jungle.model;
 
 import javax.persistence.*;
+import java.sql.Date;
 
 @Entity
 @Table(name = "orders")
@@ -23,11 +24,51 @@ public class Orders {
     private String mailingAddress;
     @Column (name = "price")
     private float price;
+    @Column (name = "subDate")
+    private java.sql.Date subDate  ;
+
     public Orders(){}
-    public Orders(Integer givenItem_id, Integer givenQuantity, String givenEmail){
+    public Orders(Integer givenItem_id, Integer givenQuantity, String givenEmail, int givenStatus, String givenName, String givenMailingAddress, float givenPrice, java.sql.Date givenSubDate){
         item_id = givenItem_id;
         qty = givenQuantity;
         email = givenEmail;
+        status = givenStatus;
+        name = givenName;
+        mailingAddress = givenMailingAddress;
+        price = givenPrice;
+        subDate = givenSubDate;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getMailingAddress() {
+        return mailingAddress;
+    }
+
+    public void setMailingAddress(String mailingAddress) {
+        this.mailingAddress = mailingAddress;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public java.sql.Date getSubDate() {
+        return subDate;
+    }
+
+    public void setSubDate(java.sql.Date subDate) {
+        this.subDate = subDate;
     }
 
     public Integer getId() {
