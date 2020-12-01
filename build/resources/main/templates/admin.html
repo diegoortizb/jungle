@@ -24,10 +24,10 @@
                     <a href="customer">Customer</a>
                 </div>
                 <div class="py-2">
-                    <a href="ws">Workstation</a>
+                    <a href="/ws">Workstation</a>
                 </div>
                 <div class="py-2">
-                    <a href="rd">Receiving Desk</a>
+                    <a href="/rd">Receiving Desk</a>
                 </div>
                 <div class="py-2">
                     <a class="active" href="admin">Admin</a>
@@ -43,18 +43,19 @@
                 <div class="col-auto">
                     <table id="weightTable">
                         <tr>
-                            <th>10 lbs</th>
-                            <th>20 lbs</th>
-                            <th>30 lbs</th>
-                            <th>40 lbs</th>
-                            <th>50 lbs</th>
+                            <th>Weight</th>
+                            <th>Tax Rate</th>
+                            <th>Action</th>
                         </tr>
                         <tr th:each = "tax : ${taxes}">
                             <div th:id="${tax.id}">
                                 <form name="changeWeightBrackets" method="post" action ="">
                                     <td id="taxWeightBracket" th:utext="${tax.weightBracket}"></td>
-                                    <td id="taxtaxRate" th:utext="${tax.taxRate}">Tax Rate</td>
-                                    <td> <input type="submit" value="Change Weight Bracket"></td>
+                                    <td id="taxRate">
+                                        <input type="text" id="rate" name="taxRate" th:placeholder="${tax.taxRate}">
+                                    </td>
+                                    <input type="hidden" id="id" name="id" th:value="${tax.id}">
+                                    <td> <input type="submit" value="Update"></td>
                                 </form>
                             </div>
                         </tr>
