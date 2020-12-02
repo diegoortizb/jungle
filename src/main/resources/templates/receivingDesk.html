@@ -31,18 +31,22 @@
             </div>
         </div>
     </div>
-        <h2>Welcome to the Receiving Desk!</h2>
 
-    <h5>Incoming Inventory Amount</h5>
+    <div class="container">
+        <div class="text-center">
+            <h2>Welcome to the Receiving Desk!</h2>
+        </div>
+    </div>
 
-    <div class="row">
+    <div class="row justify-content-center">
         <div id="partsTable" class="col-md-6">
             <table>
                 <tr>
                     <th>Item #</th>
                     <th>Desc</th>
                     <th>Quantity</th>
-                    <th>Update</th>
+                    <th>Incoming Inventory</th>
+                    <th></th>
                 </tr>
                 <tr th:each = "item : ${Inventory}">
                     <td th:utext="${item.getPartID()}">default</td>
