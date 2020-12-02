@@ -27,7 +27,7 @@ public class ReceivingDeskController {
     @GetMapping
     @RequestMapping(value="/rd", method = RequestMethod.GET)
     public String home(Model model) {
-        model.addAttribute("Inventory", partsRepo.getCustomerView());
+        model.addAttribute("Inventory", partsRepo.getRDView());
 //        model.addAttribute("Inventory", parts.findAll());
         return "receivingDesk";
     }

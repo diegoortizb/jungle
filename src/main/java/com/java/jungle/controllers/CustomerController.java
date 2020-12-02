@@ -45,7 +45,6 @@ public class CustomerController {
                                 @RequestParam(value="price") float price,
                                 @RequestParam(value="weight") float weight,
                                 @RequestParam(value="partQty") int partQty) {
-        //TODO MUST ADD A WAY TO ADD 1 TO cart.qty IF ITEM IS ALREADY IN CART
         customerService.addItemToCart(partID,description, price, weight, partQty);
 
         return "redirect:/customer";
@@ -56,10 +55,21 @@ public class CustomerController {
     //
     @RequestMapping(value="/customer/cart", method=RequestMethod.GET)
     public String cart (Model model) {
+        String taxRate = (int)customerService.getTaxRate() + "%";
+
+        float totalBeforeTax = customerService.getTotalInCart();
+        String totalBeforeTaxString = formatDecimal(totalBeforeTax);
+
+        float totalTax = customerService.getTotalAfterTaxes();
+        String totalTaxString = formatDecimal(totalTax);
+
+
         model.addAttribute("cart", customerService.findAll());
-        model.addAttribute("total", customerService.getTotalInCart());
-        model.addAttribute("taxRate", customerService.getTaxRate());
-        model.addAttribute("totalTax", customerService.getTotalAfterTaxes());
+        model.addAttribute("total", totalBeforeTax);
+        model.addAttribute("totalString", "$" + totalBeforeTaxString);
+        model.addAttribute("taxRate", taxRate);
+        model.addAttribute("totalTax", totalTax);
+        model.addAttribute("totalTaxString", "$" + totalTaxString);
         return "cart";
     }
 
@@ -75,7 +85,12 @@ public class CustomerController {
 
     @RequestMapping(value="/customer/cart/creditcard", method=RequestMethod.GET)
     public String creditCardInfo(Model model) {
-        model.addAttribute("totalTax", customerService.getTotalAfterTaxes());
+        float totalTax = customerService.getTotalAfterTaxes();
+        String totalTaxString = formatDecimal(totalTax);
+
+        model.addAttribute("trans", (int)(Math.random() * (10000 - 1000 + 1) + 1000));
+        model.addAttribute("totalTax", "$"+totalTaxString);
+        customerService.clearCart();
         return "creditcard";
     }
 
@@ -86,9 +101,16 @@ public class CustomerController {
 
         customerService.addOrder(name,email,mailingAddress);
         customerService.subtractQtyFromInventory();
-        customerService.clearCart();
         return "redirect:/customer/cart/creditcard";
     }
 
+    public String formatDecimal(float number) {
+        float epsilon = 0.004f; // 4 tenths of a cent
+        if (Math.abs(Math.round(number) - number) < epsilon) {
+            return String.format("%10.0f", number); // sdb
+        } else {
+            return String.format("%10.2f", number); // dj_segfault
+        }
+    }
 
 }
