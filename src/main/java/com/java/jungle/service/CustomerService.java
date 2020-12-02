@@ -59,6 +59,16 @@ public class CustomerService {
         }
     }
 
+    @Transactional
+    public void addQtyFromInventory(int partId,int qty) {
+
+        List<inventoryObject> inventory = inventoryRepository.searchByPartId(partId);
+        for (inventoryObject itemInventory : inventory) {
+            inventoryRepository.updateQty(itemInventory.getQty() + qty, itemInventory.getId());
+        }
+
+    }
+
     public void clearCart() {
         cartRepo.deleteAll();
     }
