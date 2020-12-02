@@ -40,12 +40,6 @@ public class OrdersService {
         ordersRepository.save(order);
     }
 
-    public void updatePrice(int id, float price) {
-        Orders order = ordersRepository.findById(id).get();
-        order.setPrice(price);
-        ordersRepository.save(order);
-    }
-
     public List<Orders> searchByStatus(int status) {
         return ordersRepository.searchedByStatus(status);
     }

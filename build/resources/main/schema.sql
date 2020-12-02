@@ -33,7 +33,7 @@ CREATE TABLE orders (
     mailingAddress VARCHAR(255),
     status         int DEFAULT 1,
     price          decimal(8,2),
-    subDate        date   NOT NULL,
+    subDate        date   NOT NULL DEFAULT NOW(),
 
     FOREIGN KEY (partID) REFERENCES parts(id)
 );
