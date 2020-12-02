@@ -22,16 +22,16 @@
             <img src="/images/jungle_logo2.png" alt="jungle logo" width="74" height="34">
         </div>
         <div class="py-2">
-            <a class="active" href="customer">Customer</a>
+            <a class="active" href="../../customer">Customer</a>
         </div>
         <div class="py-2">
-            <a href="ws">Workstation</a>
+            <a href="../../ws">Workstation</a>
         </div>
         <div class="py-2">
-            <a href="rd">Receiving Desk</a>
+            <a href="../../rd">Receiving Desk</a>
         </div>
         <div class="py-2">
-            <a href="admin">Admin</a>
+            <a href="../../admin">Admin</a>
         </div>
     </div>
 </div>
@@ -47,18 +47,18 @@
                     <div id="checkout form">
                         <form name="authorize" method="post" action ="http://blitz.cs.niu.edu/CreditCard/">
                             <label for="name">Name on Card</label>
-                            <input type="text" class="form-control" id="name" placeholder="John Doe">
+                            <input type="text" class="form-control" name="name" id="name" placeholder="John Doe">
 
                             <label for="cc">Credit Card Number</label>
-                            <input type="text" class="form-control" id="cc" placeholder="6011 1234 4321 1234">
+                            <input type="text" class="form-control" id="cc" name="cc" placeholder="6011 1234 4321 1234">
 
                             <label for="exp">Expiration Date</label>
-                            <input type="text" class="form-control" id="exp" placeholder="12/2020">
+                            <input type="text" class="form-control" id="exp" name="exp" placeholder="12/2020">
 
                             <label for="amount">Amount: </label>
                             <input type="hidden" id="amount" name="amount" th:value="${totalTax}" th:utext="${totalTax}"><br>
 
-                            <input type="hidden" name="vendor" value="VE001-99">
+                            <input type="hidden" name="vendor" value="Group3A">
                             <input type="hidden" name="trans" value="907-987654321-296">
                             <input type="submit" value="Place Order">
                         </form>

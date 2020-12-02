@@ -1,7 +1,7 @@
 package com.java.jungle.model;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 
 @Entity
 @Table(name = "orders")
@@ -26,14 +26,14 @@ public class Orders {
     @Column (name = "name")
     private String name;
 
-    @Column (name = "subDate")
-    private java.sql.Date subDate;
-
     @Column (name = "mailingAddress")
     private String mailingAddress;
 
     @Column (name = "price")
     private float price;
+
+    @Column (name = "subDate")
+    private Date subDate;
 
     public Orders(){}
     public Orders(Integer givenItem_id, Integer givenQuantity, String givenEmail){
@@ -42,7 +42,7 @@ public class Orders {
         email = givenEmail;
     }
 
-    public Orders(String email, String name, String mailingAddress, float price, int partID, int qty) {
+    public Orders(String email, String name, String mailingAddress, float price, int partID, int qty, Date subdate) {
         this.email = email;
         this.name = name;
         this.mailingAddress = mailingAddress;
@@ -50,6 +50,7 @@ public class Orders {
         this.item_id = partID;
         this.status = 1;
         this.qty = qty;
+        this.subDate = subdate;
     }
 
     public Integer getId() {
@@ -62,24 +63,6 @@ public class Orders {
 
     public Integer getQty() {
         return qty;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public float getPrice() {
-        return price;
-    }
-
-    public void setPrice(float price) {this.price = price;}
-
-    public Date getDate() {return subDate;}
-
-    public void setDate(Date date) {this.subDate = date;}
-
-    public String getMailingAddress() {
-        return mailingAddress;
     }
 
     public String getEmail() {
@@ -98,16 +81,8 @@ public class Orders {
         this.item_id = item_id;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public void setQty(Integer qty) {
         this.qty = qty;
-    }
-
-    public void setMailingAddress(String mailingAddress) {
-        this.mailingAddress = mailingAddress;
     }
 
     public void setEmail(String email) {

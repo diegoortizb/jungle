@@ -1,19 +1,13 @@
 package com.java.jungle.controllers;
 
-import com.java.jungle.model.dto.CustomerView;
-import com.java.jungle.repository.Parts.InventoryRepository;
-import com.java.jungle.repository.Parts.OrdersRepository;
 import com.java.jungle.repository.Parts.PartsRepository;
 import com.java.jungle.service.CustomerService;
 import com.java.jungle.service.PartsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.logging.Logger;
 
 @Controller
@@ -91,6 +85,8 @@ public class CustomerController {
                            @RequestParam(value="mailingAddress") String mailingAddress) {
 
         customerService.addOrder(name,email,mailingAddress);
+        customerService.subtractQtyFromInventory();
+        customerService.clearCart();
         return "redirect:/customer/cart/creditcard";
     }
 
