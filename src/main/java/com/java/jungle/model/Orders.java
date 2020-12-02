@@ -1,6 +1,7 @@
 package com.java.jungle.model;
 
 import javax.persistence.*;
+import java.sql.Date;
 
 @Entity
 @Table(name = "orders")
@@ -24,6 +25,9 @@ public class Orders {
 
     @Column (name = "name")
     private String name;
+
+    @Column (name = "subDate")
+    private java.sql.Date subDate;
 
     @Column (name = "mailingAddress")
     private String mailingAddress;
@@ -60,6 +64,24 @@ public class Orders {
         return qty;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {this.price = price;}
+
+    public Date getDate() {return subDate;}
+
+    public void setDate(Date date) {this.subDate = date;}
+
+    public String getMailingAddress() {
+        return mailingAddress;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -76,8 +98,16 @@ public class Orders {
         this.item_id = item_id;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public void setQty(Integer qty) {
         this.qty = qty;
+    }
+
+    public void setMailingAddress(String mailingAddress) {
+        this.mailingAddress = mailingAddress;
     }
 
     public void setEmail(String email) {
