@@ -16,4 +16,9 @@ public interface PartsRepository extends JpaRepository<Parts, Integer> {
             "FROM Parts p, Inventory i " +
             "WHERE i.partID = p.id AND i.qty > 0")
     List<CustomerView> getCustomerView();
+
+    @Query(value = "SELECT new com.java.jungle.model.dto.CustomerView(p.id, i.id, p.desc, p.price, p.weight, p.pictureURL, i.qty) " +
+            "FROM Parts p, Inventory i " +
+            "WHERE i.partID = p.id")
+    List<CustomerView> getRDView();
 }

@@ -45,7 +45,6 @@ public class CustomerController {
                                 @RequestParam(value="price") float price,
                                 @RequestParam(value="weight") float weight,
                                 @RequestParam(value="partQty") int partQty) {
-        //TODO MUST ADD A WAY TO ADD 1 TO cart.qty IF ITEM IS ALREADY IN CART
         customerService.addItemToCart(partID,description, price, weight, partQty);
 
         return "redirect:/customer";
@@ -89,7 +88,7 @@ public class CustomerController {
         float totalTax = customerService.getTotalAfterTaxes();
         String totalTaxString = formatDecimal(totalTax);
 
-        model.addAttribute("trans", (Math.random() * (10000 - 1000 + 1) + 1000));
+        model.addAttribute("trans", (int)(Math.random() * (10000 - 1000 + 1) + 1000));
         model.addAttribute("totalTax", "$"+totalTaxString);
         customerService.clearCart();
         return "creditcard";

@@ -91,7 +91,7 @@
                                             let response = JSON.parse(request.response)
                                             if (response['errors'] === undefined) {
                                                 alert("Accepted your card");
-                                                location.href = "/customer/cart/creditcard/submit"
+                                                location.href = "/customer"
                                             } else {
                                                 alert("ERROR: " + response['errors'])
                                             }
