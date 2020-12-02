@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.sql.DataSource;
 
 @Controller
-@RequestMapping("/rd")
 public class ReceivingDeskController {
 
     @Autowired
@@ -26,6 +25,7 @@ public class ReceivingDeskController {
 //    private Db2Service parts;
 
     @GetMapping
+    @RequestMapping(value="/rd", method = RequestMethod.GET)
     public String home(Model model) {
         model.addAttribute("Inventory", partsRepo.getCustomerView());
 //        model.addAttribute("Inventory", parts.findAll());
