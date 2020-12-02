@@ -53,6 +53,38 @@ public class Orders {
         this.subDate = subdate;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getMailingAddress() {
+        return mailingAddress;
+    }
+
+    public void setMailingAddress(String mailingAddress) {
+        this.mailingAddress = mailingAddress;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public Date getSubDate() {
+        return subDate;
+    }
+
+    public void setSubDate(Date subDate) {
+        this.subDate = subDate;
+    }
+
     public Integer getId() {
         return id;
     }
