@@ -11,7 +11,10 @@ INSERT INTO taxes (weightBracket, taxRate) VALUES
 (40,0.20),
 (50,0.25),
 (60,0.30),
-(70,0.35);
+(70,0.35),
+(80,0.40),
+(90,0.45),
+(100,0.50);
 
 INSERT INTO parts (id, desc, price, weight, pictureURL) VALUES
 (1, 'windshield w/ polymer', 178.76, 0.55, 'http://blitz.cs.niu.edu/pics/shi.jpg'),
@@ -155,6 +158,11 @@ INSERT INTO parts (id, desc, price, weight, pictureURL) VALUES
 (147, 'American Airlines: MD-11S', 40.83, 2.00, 'http://blitz.cs.niu.edu/pics/air.jpg'),
 (148, 'Boeing X-32A JSF', 36.90, 2.00, 'http://blitz.cs.niu.edu/pics/air.jpg'),
 (149, 'Pont Yacht', 37.48, 2.00, 'http://blitz.cs.niu.edu/pics/ship.jpg');
+
+INSERT INTO orders(qty, partID, email, status, name, mailingAddress, price, subDate) VALUES (10, 141, 'blah@email.cool',1, 'Diego','1425 West Lincoln Highway DeKalb, IL 60115', 25.00, '2020-01-25'),
+                                                                                   (11, 141, 'blah@email.cool',1, 'Badea','1425 West Lincoln Highway DeKalb, IL 60115', 50.00, '2020-11-20'),
+                                                                                   (11, 141, 'blah@email.lame',1, 'Alex','1425 West Lincoln Highway DeKalb, IL 60115', 75.00, '2020-03-15'),
+                                                                                   (11, 141, 'badeaalamidi@gmail.com',0, 'Josh','1425 West Lincoln Highway DeKalb, IL 60115', 100.00, '2020-04-10');
 
 INSERT INTO inventory(partID, qty) VALUES
 (1,10),

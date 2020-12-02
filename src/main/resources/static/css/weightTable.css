@@ -1,0 +1,25 @@
+#weightTable {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+}
+
+#weightTable td, #weightTable th {
+    border: 1px solid #393737;
+    padding: 8px;
+}
+
+#weightTable .center {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+
+#weightTable tr:nth-child(even){background-color: #f2f2f2;}
+
+#weightTable tr:hover {background-color: #ddd;}
+
+#weightTable th {
+    text-align: left;
+    background-color: dimgray;
+    color: white;
+}

@@ -1,2 +1,4 @@
+com/java/jungle/repository/db2RepositoryTest.java
+ com.java.jungle.repository.db2RepositoryTest
 com/java/jungle/JungleApplicationTests.java
  com.java.jungle.JungleApplicationTests
