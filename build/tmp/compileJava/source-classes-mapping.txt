@@ -4,12 +4,12 @@ com/java/jungle/model/dto/CustomerView.java
  com.java.jungle.model.dto.CustomerView
 com/java/jungle/config/PartsConfigController.java
  com.java.jungle.config.PartsConfigController
-com/java/jungle/service/PartsService.java
- com.java.jungle.service.PartsService
-com/java/jungle/controllers/ReceivingDeskController.java
- com.java.jungle.controllers.ReceivingDeskController
-com/java/jungle/resource/UsersResource.java
- com.java.jungle.resource.UsersResource
+com/java/jungle/controllers/WorkStationController.java
+ com.java.jungle.controllers.WorkStationController
+com/java/jungle/repository/Parts/PartsRepository.java
+ com.java.jungle.repository.Parts.PartsRepository
+com/java/jungle/model/Orders.java
+ com.java.jungle.model.Orders
 com/java/jungle/repository/DB2/db2Repository.java
  com.java.jungle.repository.DB2.db2Repository
 com/java/jungle/repository/Parts/InventoryRepository.java
@@ -28,8 +28,8 @@ com/java/jungle/model/dto/inventoryObject.java
  com.java.jungle.model.dto.inventoryObject
 com/java/jungle/service/Db2Service.java
  com.java.jungle.service.Db2Service
-com/java/jungle/repository/Parts/PartsRepository.java
- com.java.jungle.repository.Parts.PartsRepository
+com/java/jungle/controllers/AdminController.java
+ com.java.jungle.controllers.AdminController
 com/java/jungle/model/db2Entity.java
  com.java.jungle.model.db2Entity
 com/java/jungle/service/AdminService.java
@@ -38,17 +38,17 @@ com/java/jungle/repository/Parts/CartRepository.java
  com.java.jungle.repository.Parts.CartRepository
 com/java/jungle/JungleApplication.java
  com.java.jungle.JungleApplication
-com/java/jungle/controllers/CustomerController.java
- com.java.jungle.controllers.CustomerController
+com/java/jungle/resource/UsersResource.java
+ com.java.jungle.resource.UsersResource
 com/java/jungle/model/Parts.java
  com.java.jungle.model.Parts
-com/java/jungle/controllers/WorkStationController.java
- com.java.jungle.controllers.WorkStationController
-com/java/jungle/controllers/AdminController.java
- com.java.jungle.controllers.AdminController
-com/java/jungle/model/Orders.java
- com.java.jungle.model.Orders
-com/java/jungle/service/CustomerService.java
- com.java.jungle.service.CustomerService
+com/java/jungle/service/PartsService.java
+ com.java.jungle.service.PartsService
 com/java/jungle/service/OrdersService.java
  com.java.jungle.service.OrdersService
+com/java/jungle/controllers/ReceivingDeskController.java
+ com.java.jungle.controllers.ReceivingDeskController
+com/java/jungle/service/CustomerService.java
+ com.java.jungle.service.CustomerService
+com/java/jungle/controllers/CustomerController.java
+ com.java.jungle.controllers.CustomerController

@@ -86,7 +86,11 @@ public class CustomerController {
 
     @RequestMapping(value="/customer/cart/creditcard", method=RequestMethod.GET)
     public String creditCardInfo(Model model) {
-        model.addAttribute("totalTax", customerService.getTotalAfterTaxes());
+        float totalTax = customerService.getTotalAfterTaxes();
+        String totalTaxString = formatDecimal(totalTax);
+
+        model.addAttribute("totalTax", "$"+totalTaxString);
+        customerService.clearCart();
         return "creditcard";
     }
 
@@ -97,7 +101,6 @@ public class CustomerController {
 
         customerService.addOrder(name,email,mailingAddress);
         customerService.subtractQtyFromInventory();
-        customerService.clearCart();
         return "redirect:/customer/cart/creditcard";
     }
 
