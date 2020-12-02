@@ -17,6 +17,7 @@ public class OrdersService {
 
     @ModelAttribute("parts")
     public List<Orders> findAll(){return ordersRepository.findAll();}
+    //public List<Orders> findAll(){return ordersRepository.searchedByStatus();}
     public List <String> findAllByEmail(){return ordersRepository.findAllByEmail();}
 
     public void addItemToOrders(Integer item_id, Integer quantity, String email) {
@@ -38,4 +39,23 @@ public class OrdersService {
         order.setStatus(status);
         ordersRepository.save(order);
     }
+
+    public void updatePrice(int id, float price) {
+        Orders order = ordersRepository.findById(id).get();
+        order.setPrice(price);
+        ordersRepository.save(order);
+    }
+
+    public List<Orders> searchByStatus(int status) {
+        return ordersRepository.searchedByStatus(status);
+    }
+
+    public List<Orders> searchByPrice(float price1, float price2) {
+        return ordersRepository.searchedByPrice(price1, price2);
+    }
+
+    public List<Orders> searchByDate(java.sql.Date date1, java.sql.Date date2) {
+        return ordersRepository.searchedByDate(date1, date2);
+    }
+
 }
