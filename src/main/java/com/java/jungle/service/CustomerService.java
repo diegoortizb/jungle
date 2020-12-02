@@ -1,12 +1,17 @@
 package com.java.jungle.service;
 
 import com.java.jungle.model.Cart;
+import com.java.jungle.model.Inventory;
+import com.java.jungle.model.Orders;
 import com.java.jungle.model.Taxes;
+import com.java.jungle.model.dto.inventoryObject;
 import com.java.jungle.repository.Parts.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.List;
 
 
@@ -21,6 +26,12 @@ public class CustomerService {
     @Autowired
     private PartsRepository partsRepository;
 
+    @Autowired
+    private OrdersRepository ordersRepository;
+
+    @Autowired
+    private InventoryRepository inventoryRepository;
+
     @ModelAttribute("cart")
     public List<Cart> findAll() {
         return cartRepo.findAll();
@@ -28,12 +39,51 @@ public class CustomerService {
 
     public void updateQty(int id, int qty) {
         Cart item = cartRepo.findById(id).get();
-        item.setQty(qty);
-        cartRepo.save(item);
+        if (qty == 0) {
+            cartRepo.delete(item);
+        } else {
+            item.setQty(qty);
+            cartRepo.save(item);
+        }
     }
 
-    public void addItemToCart(int partID, String description, float price, float weight) {
-        Cart item = new Cart(partID,description,price, weight);
+    @Transactional
+    public void subtractQtyFromInventory() {
+        List<Cart> cart = findAll();
+
+        for (Cart item : cart) {
+            List<inventoryObject> inventory = inventoryRepository.searchByPartId(item.getId());
+            for (inventoryObject itemInventory : inventory) {
+                inventoryRepository.updateQty(itemInventory.getQty() - item.getQty(), itemInventory.getId());
+            }
+        }
+    }
+
+    @Transactional
+    public void addQtyFromInventory(int partId,int qty) {
+
+        List<inventoryObject> inventory = inventoryRepository.searchByPartId(partId);
+        for (inventoryObject itemInventory : inventory) {
+            inventoryRepository.updateQty(itemInventory.getQty() + qty, itemInventory.getId());
+        }
+
+    }
+
+    public void clearCart() {
+        cartRepo.deleteAll();
+    }
+
+    public void addOrder(String name, String email, String address) {
+        List<Cart> cart = cartRepo.findAll();
+        Date date = new Date();
+        for (Cart part : cart) {
+            Orders order = new Orders(email,name,address,part.getPrice(),part.getId(), part.getQty(), date);
+            ordersRepository.save(order);
+        }
+    }
+
+    public void addItemToCart(int partID, String description, float price, float weight, int partQty) {
+        Cart item = new Cart(partID,description,price, weight, partQty);
         cartRepo.save(item);
     }
 

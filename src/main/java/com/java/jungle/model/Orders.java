@@ -1,42 +1,56 @@
 package com.java.jungle.model;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 
 @Entity
 @Table(name = "orders")
 public class Orders {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name = "id")
     private Integer id;
+
     @Column (name = "partID")
     private Integer item_id;
+
     @Column (name = "qty")
     private Integer qty;
+
     @Column (name = "email")
     private String email;
+
     @Column (name = "status")
     private int status;
+
     @Column (name = "name")
     private String name;
+
     @Column (name = "mailingAddress")
     private String mailingAddress;
+
     @Column (name = "price")
     private float price;
+
     @Column (name = "subDate")
     private Date subDate;
 
     public Orders(){}
-    public Orders(Integer givenItem_id, Integer givenQuantity, String givenEmail, int givenStatus, String givenName, String givenMailingAddress, float givenPrice, java.sql.Date givenSubDate){
+    public Orders(Integer givenItem_id, Integer givenQuantity, String givenEmail){
         item_id = givenItem_id;
         qty = givenQuantity;
         email = givenEmail;
-        status = givenStatus;
-        name = givenName;
-        mailingAddress = givenMailingAddress;
-        price = givenPrice;
-        subDate = givenSubDate;
+    }
+
+    public Orders(String email, String name, String mailingAddress, float price, int partID, int qty, Date subdate) {
+        this.email = email;
+        this.name = name;
+        this.mailingAddress = mailingAddress;
+        this.price = price;
+        this.item_id = partID;
+        this.status = 1;
+        this.qty = qty;
+        this.subDate = subdate;
     }
 
     public String getName() {
@@ -63,11 +77,11 @@ public class Orders {
         this.price = price;
     }
 
-    public java.sql.Date getSubDate() {
+    public Date getSubDate() {
         return subDate;
     }
 
-    public void setSubDate(java.sql.Date subDate) {
+    public void setSubDate(Date subDate) {
         this.subDate = subDate;
     }
 
