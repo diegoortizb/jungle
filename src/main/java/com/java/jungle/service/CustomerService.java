@@ -1,13 +1,17 @@
 package com.java.jungle.service;
 
 import com.java.jungle.model.Cart;
+import com.java.jungle.model.Inventory;
 import com.java.jungle.model.Orders;
 import com.java.jungle.model.Taxes;
+import com.java.jungle.model.dto.inventoryObject;
 import com.java.jungle.repository.Parts.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.List;
 
 
@@ -25,6 +29,9 @@ public class CustomerService {
     @Autowired
     private OrdersRepository ordersRepository;
 
+    @Autowired
+    private InventoryRepository inventoryRepository;
+
     @ModelAttribute("cart")
     public List<Cart> findAll() {
         return cartRepo.findAll();
@@ -40,10 +47,27 @@ public class CustomerService {
         }
     }
 
+    @Transactional
+    public void subtractQtyFromInventory() {
+        List<Cart> cart = findAll();
+
+        for (Cart item : cart) {
+            List<inventoryObject> inventory = inventoryRepository.searchByPartId(item.getId());
+            for (inventoryObject itemInventory : inventory) {
+                inventoryRepository.updateQty(itemInventory.getQty() - item.getQty(), itemInventory.getId());
+            }
+        }
+    }
+
+    public void clearCart() {
+        cartRepo.deleteAll();
+    }
+
     public void addOrder(String name, String email, String address) {
         List<Cart> cart = cartRepo.findAll();
+        Date date = new Date();
         for (Cart part : cart) {
-            Orders order = new Orders(email,name,address,part.getPrice(),part.getId(), part.getQty());
+            Orders order = new Orders(email,name,address,part.getPrice(),part.getId(), part.getQty(), date);
             ordersRepository.save(order);
         }
     }
