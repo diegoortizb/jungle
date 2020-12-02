@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
           integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
           crossorigin="anonymous">
-    <script language="JavaScript" src="../static/js/cart.js"></script>
+    <script type = "text/javascript" src="../static/js/cart.js"></script>
     <title>Credit Card Info</title>
 </head>
 
@@ -45,7 +45,7 @@
             <div class="container d-flex flex-column flex-md-row justify-content-between">
                 <div class="form-group">
                     <div id="checkout form">
-                        <form name="authorize" method="post" action ="http://blitz.cs.niu.edu/CreditCard/">
+
                             <label for="name">Name on Card</label>
                             <input type="text" class="form-control" name="name" id="name" placeholder="John Doe">
 
@@ -58,10 +58,52 @@
                             <label for="amount">Amount: </label>
                             <input type="hidden" id="amount" name="amount" th:value="${totalTax}" th:utext="${totalTax}"><br>
 
-                            <input type="hidden" name="vendor" value="Group3A">
-                            <input type="hidden" name="trans" value="907-987654321-296">
-                            <input type="submit" value="Place Order">
-                        </form>
+                            <input type="hidden" name="vendor" id='vendor' value="Group3A">
+                            <input type="hidden" name="trans" id="trans" th:value="${trans}">
+                            <input type="submit" id="submit" value="Place Order">
+                        <script>
+                            document.addEventListener('DOMContentLoaded',() => {
+                                document.getElementById("submit").addEventListener("click", function () {
+                                    let name = document.getElementById('name').value
+                                    let cc = document.getElementById('cc').value
+                                    let exp = document.getElementById('exp').value
+                                    let amount = document.getElementById('amount').value
+                                    let trans = document.getElementById('trans').value
+                                    let vendor = document.getElementById('vendor').value
+
+                                    request = new XMLHttpRequest()
+                                    request.open('POST', 'http://blitz.cs.niu.edu/CreditCard/')
+                                    request.setRequestHeader('Content-type', 'application/json')
+                                    request.setRequestHeader('Accept', 'application/json')
+
+                                    let formData = JSON.stringify({
+                                        'name': name,
+                                        'cc': cc,
+                                        'exp': exp,
+                                        'amount': amount,
+                                        'trans': trans,
+                                        'vendor': vendor
+                                    })
+
+                                    request.send(formData)
+                                    request.onload = ()=>{
+                                        if (request.readyState ===4 && request.status === 200){
+                                            let response = JSON.parse(request.response)
+                                            if (response['errors'] === undefined) {
+                                                alert("Accepted your card");
+                                                location.href = "/customer/cart/creditcard/submit"
+                                            } else {
+                                                alert("ERROR: " + response['errors'])
+                                            }
+
+                                        }
+                                    }
+
+
+                                })
+                            })
+                        </script>
+
                     </div>
                 </div>
             </div>

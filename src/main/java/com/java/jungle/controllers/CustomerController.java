@@ -89,6 +89,7 @@ public class CustomerController {
         float totalTax = customerService.getTotalAfterTaxes();
         String totalTaxString = formatDecimal(totalTax);
 
+        model.addAttribute("trans", (Math.random() * (10000 - 1000 + 1) + 1000));
         model.addAttribute("totalTax", "$"+totalTaxString);
         customerService.clearCart();
         return "creditcard";
