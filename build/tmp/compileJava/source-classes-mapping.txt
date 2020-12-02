@@ -42,13 +42,13 @@ com/java/jungle/controllers/CustomerController.java
  com.java.jungle.controllers.CustomerController
 com/java/jungle/model/Parts.java
  com.java.jungle.model.Parts
+com/java/jungle/controllers/WorkStationController.java
+ com.java.jungle.controllers.WorkStationController
+com/java/jungle/controllers/AdminController.java
+ com.java.jungle.controllers.AdminController
 com/java/jungle/model/Orders.java
  com.java.jungle.model.Orders
 com/java/jungle/service/CustomerService.java
  com.java.jungle.service.CustomerService
-com/java/jungle/controllers/AdminController.java
- com.java.jungle.controllers.AdminController
 com/java/jungle/service/OrdersService.java
  com.java.jungle.service.OrdersService
-com/java/jungle/controllers/WorkStationController.java
- com.java.jungle.controllers.WorkStationController
