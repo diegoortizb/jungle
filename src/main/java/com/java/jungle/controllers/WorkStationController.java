@@ -3,6 +3,7 @@ package com.java.jungle.controllers;
 import com.fasterxml.jackson.databind.node.TextNode;
 import com.java.jungle.component.EmailComponent;
 import com.java.jungle.model.Orders;
+import com.java.jungle.model.dto.OrdersView;
 import com.java.jungle.service.Db2Service;
 import com.java.jungle.service.OrdersService;
 import com.java.jungle.service.PartsService;
@@ -45,7 +46,7 @@ public class WorkStationController {
     }
     //@RequestMapping(value = "/ordersof", method = RequestMethod.GET)
     @GetMapping(value = "/ws/ordersof", produces = "application/json")
-    public @ResponseBody List<Orders> findOrdersOf(@RequestParam String email){
+    public @ResponseBody List<OrdersView> findOrdersOf(@RequestParam String email){
         return orders.findOrdersOf(email);
     }
 

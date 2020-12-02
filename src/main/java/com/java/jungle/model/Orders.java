@@ -25,7 +25,7 @@ public class Orders {
     @Column (name = "price")
     private float price;
     @Column (name = "subDate")
-    private java.sql.Date subDate  ;
+    private Date subDate;
 
     public Orders(){}
     public Orders(Integer givenItem_id, Integer givenQuantity, String givenEmail, int givenStatus, String givenName, String givenMailingAddress, float givenPrice, java.sql.Date givenSubDate){

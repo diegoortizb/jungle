@@ -19,7 +19,7 @@ public class EmailComponent implements EmailService {
         message.setFrom("JungleNoReply@Corp.com");
         message.setTo(to);
         message.setSubject("Message From Jungle!");
-        message.setText("your order has been confirmed");
+        message.setText("your order has been shipped");
 
 
         mailSender.send(message);
