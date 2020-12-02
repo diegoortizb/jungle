@@ -1,8 +1,10 @@
 package com.java.jungle.controllers;
 
 import com.java.jungle.repository.Parts.PartsRepository;
+import com.java.jungle.service.CustomerService;
 import com.java.jungle.service.Db2Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,12 +12,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.sql.DataSource;
+
 @Controller
 @RequestMapping("/rd")
 public class ReceivingDeskController {
 
     @Autowired
     private PartsRepository partsRepo;
+
+    @Autowired
+    private CustomerService customerService;
 //    private Db2Service parts;
 
     @GetMapping
@@ -30,6 +37,7 @@ public class ReceivingDeskController {
                                 @RequestParam(value="invUpdate") int updateQuantity) {
 
         //TODO: Update partID's quantity
+        customerService.addQtyFromInventory(partID, updateQuantity);
 
         return "redirect:/rd";
     }

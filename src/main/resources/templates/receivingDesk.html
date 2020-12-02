@@ -35,9 +35,6 @@
 
     <h5>Incoming Inventory Amount</h5>
 
-    <form name="addToCart" method="post" action ="">
-        <input type="text" id="invUpdate" name="invUpdate">
-    </form>
     <div class="row">
         <div id="partsTable" class="col-md-6">
             <table>
@@ -53,6 +50,7 @@
                     <td th:utext="${item.getQty()}">price</td>
                     <form name="updateInventory" method="post" action ="">
                         <input type="hidden" id="partID" name="partID" th:value="${item.getPartID()}">
+                       <td><input type="text" id="invUpdate" name="invUpdate"></td>
                         <td> <input type="submit" value="Update"></td>
                     </form>
                 </tr>
