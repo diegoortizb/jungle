@@ -70,15 +70,15 @@
                         </tr>
                         <tr>
                             <th id="totalTitle" colspan="3">Total :</th>
-                            <td id="totalSum" th:utext="${total}">0</td>
+                            <td id="totalSum" th:utext="${totalString}">0</td>
                         </tr>
                         <tr>
-                            <th id="tax" colspan="3">Tax:</th>
+                            <th id="tax" colspan="3">Shipping and Handling Charges:</th>
                             <td id="taxRate" th:utext="${taxRate}">0</td>
                         </tr>
                         <tr>
                             <th id="totalAfterTax" colspan="3">Total After Taxes :</th>
-                            <td id="totalTaxed" th:utext="${totalTax}">0</td>
+                            <td id="totalTaxed" th:utext="${totalTaxString}">0</td>
                         </tr>
                     </table>
 
@@ -96,7 +96,7 @@
                                     <input type="text" class="form-control" id="mailingAddress" name="mailingAddress" placeholder="12345 N Road St, DeKalb IL">
 
                                     <label for="price">Amount: </label>
-                                    <input type="hidden" id="price" name="price" th:value="${totalTax}" th:utext="${totalTax}"><br>
+                                    <input type="hidden" id="price" name="price" th:value="${totalTax}" th:utext="${totalTaxString}"><br>
 
                                     <input type="submit" value="Begin Order">
                                 </form>

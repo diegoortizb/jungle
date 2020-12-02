@@ -56,10 +56,21 @@ public class CustomerController {
     //
     @RequestMapping(value="/customer/cart", method=RequestMethod.GET)
     public String cart (Model model) {
+        String taxRate = (int)customerService.getTaxRate() + "%";
+
+        float totalBeforeTax = customerService.getTotalInCart();
+        String totalBeforeTaxString = formatDecimal(totalBeforeTax);
+
+        float totalTax = customerService.getTotalAfterTaxes();
+        String totalTaxString = formatDecimal(totalTax);
+
+
         model.addAttribute("cart", customerService.findAll());
-        model.addAttribute("total", customerService.getTotalInCart());
-        model.addAttribute("taxRate", customerService.getTaxRate());
-        model.addAttribute("totalTax", customerService.getTotalAfterTaxes());
+        model.addAttribute("total", totalBeforeTax);
+        model.addAttribute("totalString", "$" + totalBeforeTaxString);
+        model.addAttribute("taxRate", taxRate);
+        model.addAttribute("totalTax", totalTax);
+        model.addAttribute("totalTaxString", "$" + totalTaxString);
         return "cart";
     }
 
@@ -90,5 +101,13 @@ public class CustomerController {
         return "redirect:/customer/cart/creditcard";
     }
 
+    public String formatDecimal(float number) {
+        float epsilon = 0.004f; // 4 tenths of a cent
+        if (Math.abs(Math.round(number) - number) < epsilon) {
+            return String.format("%10.0f", number); // sdb
+        } else {
+            return String.format("%10.2f", number); // dj_segfault
+        }
+    }
 
 }
