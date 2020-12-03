@@ -31,8 +31,9 @@
             </div>
         </div>
         <h2>Welcome to the Work Station!</h2>
-        <button id="ordersButton">Orders</button>
+        <button id="ordersButton" href="/ws">Orders</button>
         <button id = "toShip">To Ship</button>
+        <br>
         <table id="allOrders">
             <tr>
                 <th>Item ID</th>
@@ -48,26 +49,202 @@
         <script th:inline="javascript">
             /*<![CDATA[*/
 
+            function setVisible(Element){
+                document.getElementById("allOrders").style.display= "none";
+                document.getElementById("toShipDiv").style.display= "none";
+
+                Element.style.display = "block";
+            }
 
             var ordersArray = Array.from( /*[[${orders}]]*/ null);
-            var emailArray = Array.from(/*[[${Emails}]]*/ null)
+            var emailArray = Array.from(/*[[${Emails}]]*/ null);
+            var ordersByEmail = [];
+
+            var xhttp = new XMLHttpRequest();
+            xhttp.responseType = "json";
 
             ordersArray.forEach( tuple => {
                     // if (tuple.status == 1) return;
                     let tableRow = document.createElement("tr");
 
-                    tableRow.appendChild( document.createElement("td")).innerText=tuple.item_id;
-                    tableRow.appendChild( document.createElement("td")).innerText=tuple.qty;
-                    tableRow.appendChild( document.createElement("td")).innerText=tuple.email;
-                    tableRow.appendChild( document.createElement("td")).innerText= (tuple.status === true)? "shipped" : "needs packing";
+                    tableRow.appendChild( document.createElement("td") ).innerText=tuple.item_id;
+                    tableRow.appendChild( document.createElement("td") ).innerText=tuple.qty;
+                    tableRow.appendChild( document.createElement("td") ).innerText=tuple.email;
+                    tableRow.appendChild( document.createElement("td") ).innerText= (tuple.status === 1)? "needs packing" : "shipped";
 
                     document.getElementById("allOrders").appendChild(tableRow);
 
                 }
 
             );
-            document.getElementById("toShip").addEventListener('click',e=>{})
-            console.log(emailArray);
+
+            document.getElementById("ordersButton").addEventListener('click',()=>{window.location.reload();})
+            document.getElementById("toShip").addEventListener('click',e=>{
+                setVisible(document.getElementById("toShipDiv"));
+                document.getElementById("toShipDiv").innerHTML = null;
+                emailArray.forEach(emailString =>{
+                    document.getElementById("toShipDiv").appendChild( document.createElement("h4") ).innerText = "Click below to see the orders of " + emailString;
+
+                    var emailTable = document.getElementById("toShipDiv").appendChild(document.createElement("TABLE"));
+                    emailTable.innerText = "Click here";
+                    emailTable.dataset.email = emailString;
+                    emailTable.className = "emptyEmailTable";
+                    emailTable.addEventListener('click', handleEmailDiv, {once:true});
+
+                });
+
+                function handleEmailDiv(event){
+                    var emailTable = event.target;
+                    emailTable.innerHTML = null;
+                    emailTable.className = "emailTable";
+
+                    var invoiceButton =  document.createElement("BUTTON");
+                    invoiceButton.innerText = "print invoice";
+
+
+                    var tableHeader = emailTable.appendChild( document.createElement("TR") );
+
+
+                    tableHeader.appendChild(document.createElement("TH")).innerText = "Item Id";
+                    tableHeader.appendChild(document.createElement("TH")).innerText = "quantity";
+                    tableHeader.appendChild(document.createElement("TH")).innerText = "address";
+                    tableHeader.appendChild(document.createElement("TH")).appendChild(invoiceButton);
+
+
+                    xhttp.open("GET","/ws/ordersof?email=" + emailTable.dataset.email,true, null, null);
+                    xhttp.send();
+                    xhttp.onload = ()=>{
+                        if (xhttp.readyState ===4 && xhttp.status === 200){
+                            console.log(xhttp.response);
+                            Array.from(xhttp.response).forEach((ordersTuple, index, array)=>{
+                                var emailTableRow = emailTable.appendChild( document.createElement("TR") );
+                                emailTableRow.appendChild( document.createElement("TD") ).innerText = ordersTuple["item_id"];
+                                emailTableRow.appendChild( document.createElement("TD") ).innerText = ordersTuple["qty"];
+                                emailTableRow.appendChild( document.createElement("TD") ).innerText = ordersTuple["mailingAddress"];
+
+                                var shipButton = emailTableRow.appendChild( document.createElement("BUTTON") );
+                                shipButton.innerText = "Mark as Shipped";
+                                shipButton.addEventListener('click',(event)=>{shipButtonHandler(event);
+                                                                              printLabel(ordersTuple);
+                                        },{once:true});
+                                emailTableRow.dataset.orderid = ordersTuple["orderid"];
+
+                                ordersTuple["subDate"] = new Date(Date.now()).toLocaleDateString();
+
+                                //TEST IF FIRST ITERATION, IN WHICH CASE ASSIGN TO var invoiceButton
+                                if (index===0) invoiceButton.addEventListener('click',e=>{printInvoice(array);});
+
+                            });
+                        }
+                    }
+                }
+
+                function shipButtonHandler(event){
+
+                    var rowParent = event.target.parentNode;
+                    var recipientEmail = rowParent.parentNode.dataset.email;
+
+                    var shipRequest = new XMLHttpRequest();
+                    var emailPost = new XMLHttpRequest();
+
+                    //SET THE TUPLE TO "SHIPPED"
+                    shipRequest.open("POST", "ws/update?id="+rowParent.dataset.orderid);
+                    shipRequest.send();
+                    //EMAIL THE RECIPIENT
+                    emailPost.open("POST", "/sendEmail");
+                    emailPost.setRequestHeader("Content-Type","application/json")
+                    emailPost.send(`\"${recipientEmail}\"`);
+                    emailPost.onload=()=>{console.log(emailPost.response);}
+                    shipRequest.onload=()=>{console.log(shipRequest.response);}
+                    rowParent.style.opacity= "0.5";
+                }
+
+                function printLabel(tuple){
+
+                    var windowVariable = window.open();
+
+                    var html = "<!DOCTYPE HTML>";
+                    html +='<html lang="en-us">';
+                    html+="<head><style>" +
+                        ".deliveryAddress{text-align:right; }" +
+                        "h1{text-align:center;}" +
+                        "</style>" +
+                        "</head>";
+                    html+="<body>";
+                        html+="<h1>SHIPPING LABEL</h1>";
+                        html+="<h2>Priority Mail</h2>";
+                        html+="<br><br>";
+                        html+="<h5>TDS</h5>";
+                        html+="<h5>Jungle Corp</h5>";
+                        html+="<h5>1425 West Lincoln Highway DeKalb, IL 60115</h5>";
+                        html+="<br>";
+                        html+="<h3 class='deliveryAddress'>SHIP TO</h3>";
+                        html+="<h4 id='firstline' class='deliveryAddress'>"+tuple["name"]+"</h4>";
+                        html+="<h4 class='deliveryAddress'>"+tuple["mailingAddress"]+"</h4>";
+                    html+="</body>";
+
+                    windowVariable.document.write(html);
+                    windowVariable.window.print();
+                    windowVariable.document.close();
+                    // windowVariable.close();
+                }
+
+                function printInvoice(tuples){
+
+                    var windowVariable = window.open();
+                    var total = 0.00;
+
+                    var html = "<!DOCTYPE HTML>";
+                    html +='<html lang="en-us">';
+                    html += "<head><style>" +
+                        "th{background-color:#000000;" +
+                        "   color:#FFFFFF;}" +
+                        "td{background-color: #a7a7a7;}" +
+                        "tr:nth-child(odd){background-color: #0097ff}" +
+                        "</style></head>";
+                    html +="<body>";
+                        html +="<h1>JUNGLE INVOICE</h1>";
+                        html +="<br><br>";
+                        html +="<h4>"+tuples[0]["name"]+"</h4>";
+                        html +="<h4>"+tuples[0]["mailingAddress"]+"</h4>";
+                        html +="<br>";
+                        html +="<table>";
+                        html +="<tr>";
+                            html +="<th> item id </th>";
+                            html +="<th> qty </th>";
+                            html +="<th> price</th>";
+                            html +="<th> Date Submitted</th>";
+                        html +="</tr>";
+
+                    for (const tuple of tuples){
+                        html +="<tr>";
+                        html +="<td>"+tuple["description"]+"</td>";
+                        html +="<td>"+tuple["qty"]+"</td>";
+                        html +="<td>"+tuple["price"]+"</td>";
+                        html +="<td>"+tuple["subDate"]+"</td>";
+                        html +="</tr>";
+                        total+=tuple["price"];
+                    }
+                        html+="<br><h4>total due: $"+Math.round((total + Number.EPSILON) * 100) / 100 +"</h4>";
+                    html +="</body>";
+                    windowVariable.document.write(html);
+                    windowVariable.window.print();
+                    windowVariable.document.close();
+                    // windowVariable.close();
+
+                }
+                // xhttp.onload =  function (){
+                //     if (this.readyState === 4 && this.status === 200)
+                //     {
+                //         ordersByEmail[ordersByEmail.length] = xhttp.response;
+                //         console.log(xhttp.response);
+                //         console.log("onreadystatechagne was called");
+                //         document.getElementById("toShipDiv").appendChild(document.createElement("DIV"));
+                //     }
+                // }
+
+            });
+
 
             /*]]>*/
         </script>

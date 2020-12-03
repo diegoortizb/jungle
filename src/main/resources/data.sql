@@ -17,15 +17,15 @@ INSERT INTO taxes (weightBracket, taxRate) VALUES
 (100,0.50);
 
 INSERT INTO parts (id, desc, price, weight, pictureURL) VALUES
-(1, 'windshield w/ polymer', 178.76, 0.55, 'http://blitz.cs.niu.edu/pics/shi.jpg'),
-(2, 'wiper blade pair', 23.37, 2.50, 'http://blitz.cs.niu.edu/pics/wip.jpg'),
-(3, 'solenoid', 36.58, 2.00, 'http://blitz.cs.niu.edu/pics/sol.jpg'),
-(4, 'tiresome mettle', 157.46, 2.00, 'http://blitz.cs.niu.edu/pics/met.jpg'),
-(5, 'bucket seat pair', 315.94, 3.50, 'http://blitz.cs.niu.edu/pics/sea.jpg'),
-(6, '5 point harness', 177.79, 12.45, 'http://blitz.cs.niu.edu/pics/har.jpg'),
-(7, 'turbo intake valve', 659.83, 2.00, 'http://blitz.cs.niu.edu/pics/val.jpg'),
-(8, 'supercharger', 711.14, 99.99, 'http://blitz.cs.niu.edu/pics/anc.jpg'),
-(9, 'inter cooler sweep', 202.17, 2.00, 'http://blitz.cs.niu.edu/pics/int.jpg'),
+(1 , 'windshield w/ polymer', 178.76, 0.55, 'http://blitz.cs.niu.edu/pics/shi.jpg'),
+(2 , 'wiper blade pair', 23.37, 2.50, 'http://blitz.cs.niu.edu/pics/wip.jpg'),
+(3 , 'solenoid', 36.58, 2.00, 'http://blitz.cs.niu.edu/pics/sol.jpg'),
+(4 , 'tiresome mettle', 157.46, 2.00, 'http://blitz.cs.niu.edu/pics/met.jpg'),
+(5 , 'bucket seat pair', 315.94, 3.50, 'http://blitz.cs.niu.edu/pics/sea.jpg'),
+(6 , '5 point harness', 177.79, 12.45, 'http://blitz.cs.niu.edu/pics/har.jpg'),
+(7 , 'turbo intake valve', 659.83, 2.00, 'http://blitz.cs.niu.edu/pics/val.jpg'),
+(8 , 'supercharger', 711.14, 99.99, 'http://blitz.cs.niu.edu/pics/anc.jpg'),
+(9 , 'inter cooler sweep', 202.17, 2.00, 'http://blitz.cs.niu.edu/pics/int.jpg'),
 (10, 'gas cap - chrome', 25.38, 2.00, 'http://blitz.cs.niu.edu/pics/gas.jpg'),
 (11, 'chrome brake pedals kit-manual', 45.71, 0.55, 'http://blitz.cs.niu.edu/pics/bra.jpg'),
 (12, 'chrome brake pedals kit-automatic', 41.65, 1.95, 'http://blitz.cs.niu.edu/pics/bra.jpg'),
@@ -159,13 +159,13 @@ INSERT INTO parts (id, desc, price, weight, pictureURL) VALUES
 (148, 'Boeing X-32A JSF', 36.90, 2.00, 'http://blitz.cs.niu.edu/pics/air.jpg'),
 (149, 'Pont Yacht', 37.48, 2.00, 'http://blitz.cs.niu.edu/pics/ship.jpg');
 
-INSERT INTO orders(qty, partID, email, status, name, mailingAddress, price, subDate) VALUES (10, 141, 'blah@email.cool',1, 'Diego','1425 West Lincoln Highway DeKalb, IL 60115', 25.00, '2020-01-25'),
-                                                                                   (11, 141, 'blah@email.cool',1, 'Badea','1425 West Lincoln Highway DeKalb, IL 60115', 50.00, '2020-11-20'),
-                                                                                   (11, 141, 'blah@email.lame',1, 'Alex','1425 West Lincoln Highway DeKalb, IL 60115', 75.00, '2020-03-15'),
-                                                                                   (11, 141, 'badeaalamidi@gmail.com',0, 'Josh','1425 West Lincoln Highway DeKalb, IL 60115', 100.00, '2020-04-10');
+INSERT INTO orders(qty, partID, email, status, name, mailingAddress, price) VALUES (10, 141, 'blah@email.cool',1, 'Alex','1425 West Lincoln Highway DeKalb, IL 60115', 50.24),
+                                                                                   (11, 141, 'blah@email.cool',1, 'Badea','1425 West Lincoln Highway DeKalb, IL 60115', 50.00),
+                                                                                   (11, 141, 'blah@email.lame',1, 'Diego','1425 West Lincoln Highway DeKalb, IL 60115', 50.00),
+                                                                                   (11, 141, 'badeaalamidi@gmail.com',1, 'Josh','1425 West Lincoln Highway DeKalb, IL 60115', 50.00);
 
 INSERT INTO inventory(partID, qty) VALUES
-(1,10),
+(1,1),
 (2,1),
 (3,1),
 (4,1),
@@ -305,4 +305,4 @@ INSERT INTO inventory(partID, qty) VALUES
 (146,1),
 (147,1),
 (148,1),
-(149,10);
+(149,1);

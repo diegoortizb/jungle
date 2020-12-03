@@ -1,3 +1,69 @@
 h2{
 text-align: center;
 }
+h4{
+    text-align:center;
+}
+#toShipDiv{
+    display:none;
+}
+#allOrders{
+    width:50%;
+    margin:10% auto 0;
+}
+.emailTable{
+    font-size: large;
+}
+.emailTable{
+    display:block;
+}
+.emptyEmailTable:hover{
+    cursor:pointer;
+    background:#0097ff;
+    color:#000000;
+
+}
+.emptyEmailTable{
+    color:#FFFFFF;
+    background: #165c8a;
+    margin:auto;
+    width:50%;
+    text-align:center;
+    border-right: 30px solid;
+    border-right-color: #343a40;
+    transition: color 500ms, background-color 100ms;
+}
+.emailTable{
+    margin:auto;
+    width:50%;
+}
+th{
+    border-width:0 1px 0 1px;
+    background-color:#343a40;
+    color:#FFFFFF;
+    text-align:center !important;
+}
+td{
+    border-width:0 1px 0 1px;
+    background-color:#696969;
+    text-align:center;
+}
+td:nth-child(even){
+    border-width: 1px;
+    background-color:#f2f2f2;
+}
+.emailTable button{
+    background-color: #f2f2f2;
+    color:#000000;
+}
+#ordersButton, #toShip{
+    color:#FFFFFF;
+    border-width:0;
+    background:#343a40;
+    height:50px;
+    width:49%;
+
+}
+#ordersButton{
+    margin:0 0 0 1%;
+}

@@ -33,13 +33,14 @@ public class Cart {
     @Column(name = "partQty")
     private int partQty;
 
-    public Cart(int partID, String item, float price, float weight, int partQty) {
+
+    public Cart(int partID, String item, float price, float weight, int qty) {
         this.partID = partID;
         this.item = item;
         this.price = price;
         this.qty = 1;
         this.weight = weight;
-        this.partQty = partQty;
+        this.partQty = qty;
     }
 
     public Cart(String item, float price) {
@@ -57,6 +58,18 @@ public class Cart {
 
     public void setPartQty(int partQty) {
         this.partQty = partQty;
+    }
+
+    public Integer getPartID() {
+        return partID;
+    }
+
+    public void setPartID(Integer partID) {
+        this.partID = partID;
+    }
+
+    public void setItem(String item) {
+        this.item = item;
     }
 
     public Integer getId() {

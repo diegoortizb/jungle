@@ -1,21 +1,27 @@
-com/java/jungle/model/Cart.java
- com.java.jungle.model.Cart
+com/java/jungle/controllers/CustomerController.java
+ com.java.jungle.controllers.CustomerController
 com/java/jungle/model/dto/CustomerView.java
  com.java.jungle.model.dto.CustomerView
 com/java/jungle/config/PartsConfigController.java
  com.java.jungle.config.PartsConfigController
 com/java/jungle/controllers/WorkStationController.java
  com.java.jungle.controllers.WorkStationController
-com/java/jungle/service/OrdersService.java
- com.java.jungle.service.OrdersService
+com/java/jungle/resource/UsersResource.java
+ com.java.jungle.resource.UsersResource
 com/java/jungle/model/Orders.java
  com.java.jungle.model.Orders
 com/java/jungle/repository/DB2/db2Repository.java
  com.java.jungle.repository.DB2.db2Repository
-com/java/jungle/repository/Parts/InventoryRepository.java
- com.java.jungle.repository.Parts.InventoryRepository
+com/java/jungle/service/OrdersService.java
+ com.java.jungle.service.OrdersService
+com/java/jungle/component/EmailComponent.java
+ com.java.jungle.component.EmailComponent
 com/java/jungle/repository/Parts/TaxesRepository.java
  com.java.jungle.repository.Parts.TaxesRepository
+com/java/jungle/service/EmailService.java
+ com.java.jungle.service.EmailService
+com/java/jungle/model/dto/OrdersView.java
+ com.java.jungle.model.dto.OrdersView
 com/java/jungle/config/Db2ConfigController.java
  com.java.jungle.config.Db2ConfigController
 com/java/jungle/model/Inventory.java
@@ -38,17 +44,17 @@ com/java/jungle/repository/Parts/CartRepository.java
  com.java.jungle.repository.Parts.CartRepository
 com/java/jungle/JungleApplication.java
  com.java.jungle.JungleApplication
+com/java/jungle/repository/Parts/PartsRepository.java
+ com.java.jungle.repository.Parts.PartsRepository
 com/java/jungle/model/Parts.java
  com.java.jungle.model.Parts
+com/java/jungle/service/PartsService.java
+ com.java.jungle.service.PartsService
+com/java/jungle/repository/Parts/InventoryRepository.java
+ com.java.jungle.repository.Parts.InventoryRepository
 com/java/jungle/controllers/ReceivingDeskController.java
  com.java.jungle.controllers.ReceivingDeskController
 com/java/jungle/service/CustomerService.java
  com.java.jungle.service.CustomerService
-com/java/jungle/service/PartsService.java
- com.java.jungle.service.PartsService
-com/java/jungle/repository/Parts/PartsRepository.java
- com.java.jungle.repository.Parts.PartsRepository
-com/java/jungle/controllers/CustomerController.java
- com.java.jungle.controllers.CustomerController
-com/java/jungle/resource/UsersResource.java
- com.java.jungle.resource.UsersResource
+com/java/jungle/model/Cart.java
+ com.java.jungle.model.Cart

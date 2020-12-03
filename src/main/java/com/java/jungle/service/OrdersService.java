@@ -2,6 +2,7 @@ package com.java.jungle.service;
 
 import com.java.jungle.model.Cart;
 import com.java.jungle.model.Orders;
+import com.java.jungle.model.dto.OrdersView;
 import com.java.jungle.repository.Parts.OrdersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,15 @@ public class OrdersService {
         ordersRepository.save(item);
     }
 
-    public List<Orders> findOrdersOf(String email){
+
+    public void updateStatus(int id) {
+
+        Orders order = ordersRepository.findById(id).get();
+        order.setStatus(0);
+        ordersRepository.save(order);
+    }
+
+    public List<OrdersView> findOrdersOf(String email){
         return ordersRepository.findOrdersOf(email);
     }
 
