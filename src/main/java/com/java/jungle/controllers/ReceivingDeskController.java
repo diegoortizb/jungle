@@ -36,7 +36,6 @@ public class ReceivingDeskController {
     public String addItemToCart(@RequestParam(value="partID") Integer partID,
                                 @RequestParam(value="invUpdate") int updateQuantity) {
 
-        //TODO: Update partID's quantity
         customerService.addQtyFromInventory(partID, updateQuantity);
 
         return "redirect:/rd";

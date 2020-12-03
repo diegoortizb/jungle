@@ -50,8 +50,8 @@
             /*<![CDATA[*/
 
             function setVisible(Element){
-                document.getElementById("allOrders").style.display = "none";
-                document.getElementById("toShipDiv").style.display = "none";
+                document.getElementById("allOrders").style.display= "none";
+                document.getElementById("toShipDiv").style.display= "none";
 
                 Element.style.display = "block";
             }
@@ -156,7 +156,7 @@
                     emailPost.send(`\"${recipientEmail}\"`);
                     emailPost.onload=()=>{console.log(emailPost.response);}
                     shipRequest.onload=()=>{console.log(shipRequest.response);}
-                    rowParent.style.visibility= "hidden";
+                    rowParent.style.opacity= "0.5";
                 }
 
                 function printLabel(tuple){
@@ -166,9 +166,8 @@
                     var html = "<!DOCTYPE HTML>";
                     html +='<html lang="en-us">';
                     html+="<head><style>" +
-                        ".deliveryAddress{text-aligh:right; }" +
+                        ".deliveryAddress{text-align:right; }" +
                         "h1{text-align:center;}" +
-                        "#firstline{display:inline;}" +
                         "</style>" +
                         "</head>";
                     html+="<body>";

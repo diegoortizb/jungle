@@ -12,6 +12,7 @@ CREATE TABLE cart (
     qty    int          DEFAULT 1,
     price  decimal(8,2) DEFAULT 0,
     weight decimal(4,2) DEFAULT 0,
+    partQty int,
 
     FOREIGN KEY (partID) REFERENCES parts(id)
 );

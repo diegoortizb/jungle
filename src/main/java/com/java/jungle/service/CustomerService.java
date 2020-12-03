@@ -52,9 +52,9 @@ public class CustomerService {
         List<Cart> cart = findAll();
 
         for (Cart item : cart) {
-            List<inventoryObject> inventory = inventoryRepository.searchByPartId(item.getId());
-            for (inventoryObject itemInventory : inventory) {
-                inventoryRepository.updateQty(itemInventory.getQty() - item.getQty(), itemInventory.getId());
+            List<Inventory> inventory = inventoryRepository.searchByPartId(item.getPartID());
+            for (Inventory itemInventory : inventory) {
+                inventoryRepository.updateQty(itemInventory.getQty() - item.getQty(), item.getPartID());
             }
         }
     }
@@ -62,9 +62,9 @@ public class CustomerService {
     @Transactional
     public void addQtyFromInventory(int partId,int qty) {
 
-        List<inventoryObject> inventory = inventoryRepository.searchByPartId(partId);
-        for (inventoryObject itemInventory : inventory) {
-            inventoryRepository.updateQty(itemInventory.getQty() + qty, itemInventory.getId());
+        List<Inventory> inventory = inventoryRepository.searchByPartId(partId);
+        for (Inventory itemInventory : inventory) {
+            inventoryRepository.updateQty(itemInventory.getQty() + qty, partId);
         }
 
     }
