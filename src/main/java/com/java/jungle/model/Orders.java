@@ -32,6 +32,7 @@ public class Orders {
     @Column (name = "price")
     private float price;
 
+    @Temporal(TemporalType.DATE)
     @Column (name = "subDate")
     private Date subDate;
 

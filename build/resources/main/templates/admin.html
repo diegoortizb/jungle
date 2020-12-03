@@ -105,7 +105,7 @@
                             <th>Mailing Address</th>
                             <th>Status</th>
                             <th>Price</th>
-                            <th>Date</th>
+                            <th style="width:500px;" >Date</th>
                         </tr>
                         <tr th:each = "order : ${viewAllOrders}">
                             <div th:id="${order.id}">
@@ -117,7 +117,7 @@
                                     <td id="orderMailingAddress" th:utext="${order.mailingAddress}"></td>
                                     <td id="orderStatus" th:utext="${order.status}"></td>
                                     <td id="orderPrice" th:utext="${order.price}"></td>
-                                    <td id="orderDate" th:utext="${order.subDate}"></td>
+                                    <td style="width:50px;" id="orderDate" th:utext="${order.subDate}"></td>
                                 </form>
                             </div>
                         </tr>
