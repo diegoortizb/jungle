@@ -36,74 +36,74 @@
 </div>
 <div class="container text-center">
     <h2>Welcome to the shopping cart!</h2>
-</div>
-<div class="container">
-    <div class>
-        <a class="btn btn-primary btn-sm btn-dark" href="javascript:history.back()" role="button">Continue Shopping</a>
-    </div>
-    <div class="row justify-content-center">
-        <div class="col-auto">
-            <table id="partsTable" >
-                <tr>
-                    <th>Item</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Update</th>
-                </tr>
-                <tr id="cart" th:each = "part : ${cart}">
-                    <div th:id="${part.id}">
-                        <td id="partPicture" th:utext="${part.item}" ></td>
-                        <td id="partdes" th:utext="${part.price}"></td>
-                        <form name="addToCart" method="post" action ="/customer/cart/update">
-                            <td id="partQuantity">
-                                <select name="qty">
-                                    <option id="qty" name="qty" th:each="i : ${#numbers.sequence(0, part.partQty)}" th:value="${i}" th:text="${i}"
-                                            th:selected="${i==part.qty}">
-                                    </option>
-                                </select>
-                            </td>
-                            <input type="hidden" id="id" name="id" th:value="${part.id}">
-                            <td> <input type="submit" value="Update Order"></td>
-                        </form>
-                    </div>
-                </tr>
-                <tr>
-                    <th id="totalTitle" colspan="3">Total :</th>
-                    <td id="totalSum" th:utext="${totalString}">0</td>
-                </tr>
-                <tr>
-                    <th id="tax" colspan="3">Shipping and Handling Charges:</th>
-                    <td id="taxRate" th:utext="${taxRate}">0</td>
-                </tr>
-                <tr>
-                    <th id="totalAfterTax" colspan="3">Total After Taxes :</th>
-                    <td id="totalTaxed" th:utext="${totalTaxString}">0</td>
-                </tr>
-            </table>
+</div> <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-8 col-md-offset-5">
+                <div class="float-right">
+                    <table id="partsTable" >
+                        <tr>
+                            <th>Item</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Update</th>
+                        </tr>
+                        <tr id="cart" th:each = "part : ${cart}">
+                            <div th:id="${part.id}">
+                                <td id="partPicture" th:utext="${part.item}" ></td>
+                                <td id="partdes" th:utext="${part.price}"></td>
+                                <form name="addToCart" method="post" action ="/customer/cart/update">
+                                    <td id="partQuantity">
+                                        <select name="qty">
+                                            <option id="qty" name="qty" th:each="i : ${#numbers.sequence(0, part.partQty)}" th:value="${i}" th:text="${i}"
+                                                    th:selected="${i==part.qty}">
+                                            </option>
+                                        </select>
+                                    </td>
+                                    <input type="hidden" id="id" name="id" th:value="${part.id}">
+                                    <td> <input type="submit" value="Update Order"></td>
+                                </form>
+                            </div>
+                        </tr>
+                        <tr>
+                            <th id="totalTitle" colspan="3">Total :</th>
+                            <td id="totalSum" th:utext="${totalString}">0</td>
+                        </tr>
+                        <tr>
+                            <th id="tax" colspan="3">Shipping and Handling Charges:</th>
+                            <td id="taxRate" th:utext="${taxRate}">0</td>
+                        </tr>
+                        <tr>
+                            <th id="totalAfterTax" colspan="3">Total After Taxes :</th>
+                            <td id="totalTaxed" th:utext="${totalTaxString}">0</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="container d-flex flex-column flex-md-row justify-content-between">
+                    <div class="form-group">
+                        <div id="checkout form">
+                            <form name="addOrder" method="post" action ="/customer/cart/addOrder">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="John Doe">
 
-            <div class="container d-flex flex-column flex-md-row justify-content-between">
-                <div class="form-group">
-                    <div id="checkout form">
-                        <form name="addOrder" method="post" action ="/customer/cart/addOrder">
-                            <label for="name">Name</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="John Doe">
+                                <label for="email">Email</label>
+                                <input type=text class="form-control" id="email" name="email" placeholder="name@example.com">
 
-                            <label for="email">Email</label>
-                            <input type=text class="form-control" id="email" name="email" placeholder="name@example.com">
+                                <label for="mailingAddress">Mailing Address</label>
+                                <input type="text" class="form-control" id="mailingAddress" name="mailingAddress" placeholder="12345 N Road St, DeKalb IL">
 
-                            <label for="mailingAddress">Mailing Address</label>
-                            <input type="text" class="form-control" id="mailingAddress" name="mailingAddress" placeholder="12345 N Road St, DeKalb IL">
+                                <label for="price">Amount: </label>
+                                <input type="hidden" id="price" name="price" th:value="${totalTax}" th:utext="${totalTaxString}"><br>
 
-                            <label for="price">Amount: </label>
-                            <input type="hidden" id="price" name="price" th:value="${totalTax}" th:utext="${totalTaxString}"><br>
-
-                            <input type="submit" value="Begin Order">
-                        </form>
+                                <input type="submit" value="Begin Order">
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </body>
 </html>
