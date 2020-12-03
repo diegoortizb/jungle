@@ -33,6 +33,7 @@
         <h2>Welcome to the Work Station!</h2>
         <button id="ordersButton" href="/ws">Orders</button>
         <button id = "toShip">To Ship</button>
+        <br>
         <table id="allOrders">
             <tr>
                 <th>Item ID</th>
@@ -97,15 +98,17 @@
                     emailTable.innerHTML = null;
                     emailTable.className = "emailTable";
 
-                    var invoiceButton = emailTable.appendChild( document.createElement("BUTTON") )
+                    var invoiceButton =  document.createElement("BUTTON");
                     invoiceButton.innerText = "print invoice";
 
 
                     var tableHeader = emailTable.appendChild( document.createElement("TR") );
 
+
                     tableHeader.appendChild(document.createElement("TH")).innerText = "Item Id";
                     tableHeader.appendChild(document.createElement("TH")).innerText = "quantity";
                     tableHeader.appendChild(document.createElement("TH")).innerText = "address";
+                    tableHeader.appendChild(document.createElement("TH")).appendChild(invoiceButton);
 
 
                     xhttp.open("GET","/ws/ordersof?email=" + emailTable.dataset.email,true, null, null);
@@ -124,7 +127,9 @@
                                 shipButton.addEventListener('click',(event)=>{shipButtonHandler(event);
                                                                               printLabel(ordersTuple);
                                         },{once:true});
-                                emailTableRow.dataset.orderid = ordersTuple["id"];
+                                emailTableRow.dataset.orderid = ordersTuple["orderid"];
+
+                                ordersTuple["subDate"] = new Date(Date.now()).toLocaleDateString();
 
                                 //TEST IF FIRST ITERATION, IN WHICH CASE ASSIGN TO var invoiceButton
                                 if (index===0) invoiceButton.addEventListener('click',e=>{printInvoice(array);});
@@ -163,15 +168,19 @@
                     html+="<head><style>" +
                         ".deliveryAddress{text-aligh:right; }" +
                         "h1{text-align:center;}" +
+                        "#firstline{display:inline;}" +
                         "</style>" +
                         "</head>";
                     html+="<body>";
                         html+="<h1>SHIPPING LABEL</h1>";
                         html+="<h2>Priority Mail</h2>";
                         html+="<br><br>";
+                        html+="<h5>TDS</h5>";
                         html+="<h5>Jungle Corp</h5>";
                         html+="<h5>1425 West Lincoln Highway DeKalb, IL 60115</h5>";
-                        html+="<h4 class='deliveryAddress'>"+tuple["name"]+"</h4>";
+                        html+="<br>";
+                        html+="<h3 class='deliveryAddress'>SHIP TO</h3>";
+                        html+="<h4 id='firstline' class='deliveryAddress'>"+tuple["name"]+"</h4>";
                         html+="<h4 class='deliveryAddress'>"+tuple["mailingAddress"]+"</h4>";
                     html+="</body>";
 
@@ -188,7 +197,12 @@
 
                     var html = "<!DOCTYPE HTML>";
                     html +='<html lang="en-us">';
-                    html += "<head><style></style></head>";
+                    html += "<head><style>" +
+                        "th{background-color:#000000;" +
+                        "   color:#FFFFFF;}" +
+                        "td{background-color: #a7a7a7;}" +
+                        "tr:nth-child(odd){background-color: #0097ff}" +
+                        "</style></head>";
                     html +="<body>";
                         html +="<h1>JUNGLE INVOICE</h1>";
                         html +="<br><br>";
@@ -205,14 +219,14 @@
 
                     for (const tuple of tuples){
                         html +="<tr>";
-                        html +="<td>"+tuple["item_id"]+"</td>";
+                        html +="<td>"+tuple["description"]+"</td>";
                         html +="<td>"+tuple["qty"]+"</td>";
                         html +="<td>"+tuple["price"]+"</td>";
                         html +="<td>"+tuple["subDate"]+"</td>";
                         html +="</tr>";
                         total+=tuple["price"];
                     }
-                        html+="<br><h4>total due: "+Math.round((total + Number.EPSILON) * 100) / 100 +"</h4>";
+                        html+="<br><h4>total due: $"+Math.round((total + Number.EPSILON) * 100) / 100 +"</h4>";
                     html +="</body>";
                     windowVariable.document.write(html);
                     windowVariable.window.print();

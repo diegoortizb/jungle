@@ -4,22 +4,35 @@ import java.sql.Date;
 
 public class OrdersView {
     private String description;
-    private int orderid;
-    private int item_id;
-    private int qty;
+    private Integer orderid;
+    private Integer item_id;
+    private Integer qty;
     private int status;
-    private Date subDate;
+//    @Temporal(TemporalType.DATE)
+//    private Date subDate;
     private String mailingAddress;
     private float price;
     private String email;
     private String name;
 
-    public OrdersView(String description, Integer item_id, Integer qty, Integer status,Integer orderid, Date subDate, String mailingAddress, float price, String email, String name) {
+    public void setOrderid(Integer orderid) {
+        this.orderid = orderid;
+    }
+
+    public void setItem_id(Integer item_id) {
+        this.item_id = item_id;
+    }
+
+    public void setQty(Integer qty) {
+        this.qty = qty;
+    }
+
+    public OrdersView(String description, String email, String name, String mailingAddress, Integer item_id, Integer qty, int status, Integer orderid, float price){//, Date subDate ) {
         this.description = description;
         this.item_id = item_id;
         this.qty = qty;
         this.status = status;
-        this.subDate = subDate;
+//        this.subDate = subDate;
         this.mailingAddress = mailingAddress;
         this.price = price;
         this.email = email;
@@ -56,13 +69,13 @@ public class OrdersView {
         this.status = status;
     }
 
-    public Date getSubDate() {
-        return subDate;
-    }
-
-    public void setSubDate(Date subDate) {
-        this.subDate = subDate;
-    }
+//    public Date getSubDate() {
+//        return subDate;
+//    }
+//
+//    public void setSubDate(Date subDate) {
+//        this.subDate = subDate;
+//    }
 
     public String getMailingAddress() {
         return mailingAddress;
